@@ -14,7 +14,7 @@
 <link rel="icon" href="icon-192.png">
 <style>
 html,body{margin:0;height:100%;background:#FFFFFF;overflow:hidden;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
-#app{position:fixed;left:0;top:env(safe-area-inset-top,0px);border:0;display:block;background:#FFFFFF;transform-origin:0 0}
+#app{position:fixed;left:0;top:0;border:0;display:block;background:#FFFFFF;transform-origin:0 0}
 </style>
 </head>
 <body>
@@ -23,9 +23,12 @@ html,body{margin:0;height:100%;background:#FFFFFF;overflow:hidden;overscroll-beh
 (function(){
   var app=document.getElementById('app');
   function fit(){
-    var top=parseFloat(getComputedStyle(app).top)||0;
-    var w=window.innerWidth,h=window.innerHeight-top,k=Math.min(w/390,1.2);
-    app.style.width='390px';app.style.height=(h/k)+'px';app.style.transform='scale('+k+')';
+    var w=window.innerWidth,k=Math.min(w/390,1.2);
+    // The screens include their own status-bar space; trim it when the phone already shows a status bar
+    var standalone=(window.navigator.standalone===true)||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches);
+    var crop=standalone?36:0;
+    app.style.top=(-crop*k)+'px';
+    app.style.width='390px';app.style.height=((window.innerHeight/k)+crop)+'px';app.style.transform='scale('+k+')';
     app.style.left=((w-390*k)/2)+'px';
   }
   function dress(){
