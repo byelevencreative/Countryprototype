@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Collab with us</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes pop{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.1);opacity:1}100%{transform:none}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.06s}.stg>*:nth-child(3){animation-delay:.12s}.stg>*:nth-child(4){animation-delay:.18s}.stg>*:nth-child(5){animation-delay:.24s}.stg>*:nth-child(n+6){animation-delay:.3s}
+.fld{width:100%;box-sizing:border-box;height:48px;padding:0 14px;border-radius:12px;border:1px solid #E3DED2;background:#FFFFFF;font-size:15px;color:#1C2B26;outline:none}
+.fld:focus{border-color:#264E43;box-shadow:0 0 0 3px #E4F1FE}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1100px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+  <div class="stg" style="flex-grow: 1; padding: 52px 20px 28px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; align-items: center; gap: 8px">
+      <a href="Partners.dc.html" aria-label="Back to partners" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    </div>
+    <div style="margin-top: -6px">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #5E6D67">BECOME A PARTNER</div>
+      <h1 style="margin: 6px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.05; letter-spacing: -0.02em; color: #264E43">Collab with us</h1>
+      <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #4F6159">country is used by people who live and work across borders. Pick how you'd like to work together.</p>
+    </div>
+
+    <sc-for list="{{types}}" as="t" hint-placeholder-count="3">
+      <div style="padding: 18px; border-radius: 22px; background: {{t.bg}}; color: {{t.fg}}">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 14px; background: {{t.iconBg}}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{t.iconFg}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="{{t.icon}}"></path></svg></span>
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px">{{t.title}}</span><span style="font-size: 12.5px; opacity: .8">{{t.who}}</span></span>
+        </div>
+        <p style="margin: 12px 0 0; font-size: 13.5px; line-height: 1.5">{{t.pitch}}</p>
+        <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px">
+          <sc-for list="{{t.perks}}" as="k" hint-placeholder-count="3">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{t.tick}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{k}}</div>
+          </sc-for>
+        </div>
+        <button onClick="{{t.apply}}" style="margin-top: 14px; width: 100%; height: 46px; border-radius: 13px; border: none; background: {{t.btnBg}}; color: {{t.btnFg}}; font-size: 14.5px; font-weight: 600; cursor: pointer">{{t.cta}}</button>
+      </div>
+    </sc-for>
+
+    <p style="margin: 2px 0 0; font-size: 12px; line-height: 1.5; color: #5E6D67; text-align: center">Questions first? Email <b>info@countyourcountry.com</b></p>
+  </div>
+
+  <!-- Apply sheet -->
+  <sc-if value="{{open}}" hint-placeholder-val="{{false}}">
+    <div style="position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; justify-content: flex-end">
+      <button onClick="{{close}}" aria-label="Close" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(28,43,38,.38); cursor: pointer; animation: fade .2s ease-out both"></button>
+      <div role="dialog" aria-label="{{f.title}}" style="position: relative; padding: 10px 20px 30px; border-radius: 26px 26px 0 0; background: #FFFFFF; animation: up .28s cubic-bezier(.2,.8,.2,1) both">
+        <div style="width: 40px; height: 5px; margin: 0 auto; border-radius: 3px; background: #E3DED2"></div>
+        <sc-if value="{{form}}" hint-placeholder-val="{{true}}">
+          <div>
+            <div style="margin-top: 14px; display: flex; align-items: center; gap: 10px">
+              <span style="width: 36px; height: 36px; border-radius: 11px; background: {{f.iconBg}}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{f.iconFg}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{f.icon}}"></path></svg></span>
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; color: #264E43">{{f.title}}</span>
+            </div>
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 12px">
+              <sc-for list="{{f.fields}}" as="q" hint-placeholder-count="4">
+                <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12.5px; font-weight: 600; color: #3D5048">{{q.label}}</span><input class="fld" placeholder="{{q.ph}}" aria-label="{{q.label}}"></label>
+              </sc-for>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <span style="font-size: 12.5px; font-weight: 600; color: #3D5048">{{f.chooseLabel}}</span>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap">
+                  <sc-for list="{{f.choices}}" as="c" hint-placeholder-count="4">
+                    <button onClick="{{c.pick}}" style="height: 36px; padding: 0 12px; border-radius: 18px; border: 1.5px solid {{c.bd}}; background: {{c.bg}}; color: #264E43; font-size: 13px; font-weight: 600; cursor: pointer">{{c.label}}</button>
+                  </sc-for>
+                </div>
+              </div>
+              <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12.5px; font-weight: 600; color: #3D5048">{{f.msgLabel}} <span style="font-weight: 400; color: #7A8983">optional</span></span><textarea class="fld" rows="3" placeholder="{{f.msgPh}}" aria-label="{{f.msgLabel}}" style="height: 84px; padding: 12px 14px; resize: none; font-family: inherit"></textarea></label>
+            </div>
+            <button onClick="{{send}}" style="margin-top: 20px; width: 100%; height: 52px; border-radius: 16px; border: none; background: #264E43; color: #FFFFFF; font-size: 15.5px; font-weight: 600; cursor: pointer">Send application</button>
+            <div style="margin-top: 10px; font-size: 12px; color: #7A8983; text-align: center">Goes straight to the country team. We reply within 2 working days.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{sent}}" hint-placeholder-val="{{false}}">
+          <div style="padding: 26px 0 6px; display: flex; flex-direction: column; align-items: center; text-align: center">
+            <span style="width: 64px; height: 64px; border-radius: 32px; background: #264E43; display: flex; align-items: center; justify-content: center; animation: pop .5s cubic-bezier(.2,.8,.2,1) both"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#CFE8FF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+            <div style="margin-top: 16px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; color: #264E43">Thanks, we've got it</div>
+            <div style="margin-top: 6px; max-width: 280px; font-size: 13.5px; line-height: 1.5; color: #4F6159">{{f.thanks}}</div>
+            <button onClick="{{close}}" style="margin-top: 22px; width: 100%; height: 52px; border-radius: 16px; border: 1px solid #E3DED2; background: #FFFFFF; color: #264E43; font-size: 15.5px; font-weight: 600; cursor: pointer">Done</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"form":{"editor":"enum","options":["none","affiliate","creator","b2b"],"default":"none"},"$preview":{"width":390,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); const f = p && p.form; this.state = { open: (f && f !== 'none') ? f : null, sent: false, choice: f === 'creator' ? '10k–100k' : (f === 'b2b' ? '50' : (f === 'affiliate' ? 'Connectivity' : null)) }; }
+  renderVals() {
+    const S = this.state;
+    const I = {
+      biz: 'M4 8h16v11H4zM9 8V6h6v2M4 13h16',
+      creator: 'M4 7h3l2-2h6l2 2h3v12H4zM12 10a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z',
+      b2b: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 11a3 3 0 1 0 0-6M22 20c0-3-2-5.5-5-6'
+    };
+    const T = {
+      affiliate: { title: 'Affiliate business', who: 'For brands and services', icon: I.biz,
+        pitch: 'List your offer in Partners and reach people right before they travel or move.',
+        perks: ['A spot in the Partners tab', 'Shown at the right moment, before a trip', 'Pay per member who signs up'],
+        cta: 'Apply as a business', bg: '#E4F1FE', fg: '#1C2B26', iconBg: '#FFFFFF', iconFg: '#264E43', tick: '#264E43', btnBg: '#264E43', btnFg: '#FFFFFF',
+        fields: [['Company name', 'e.g. Holafly'], ['Website', 'https://'], ['Your email', 'name@company.com']],
+        chooseLabel: 'Category', msgLabel: 'Tell us about your offer', msgPh: 'What would you offer country members?', choices: ['Connectivity', 'Insurance', 'Money', 'Travel', 'Stay', 'Lifestyle', 'Tax & Legal', 'Business'],
+        thanks: 'Our partnerships team will look at your offer and reply within 2 working days.' },
+      creator: { title: 'Creator', who: 'For travel and expat creators', icon: I.creator,
+        pitch: 'Share country with your audience and earn for every member who joins.',
+        perks: ['Your own code and link', '[X]% for every paid member', 'Early access to new features'],
+        cta: 'Apply as a creator', bg: '#264E43', fg: '#FFFFFF', iconBg: 'rgba(207,232,255,.16)', iconFg: '#CFE8FF', tick: '#CFE8FF', btnBg: '#CFE8FF', btnFg: '#264E43',
+        fields: [['Your name', 'Full name'], ['Main social handle', '@yourname'], ['Email', 'you@email.com']],
+        chooseLabel: 'Audience size', msgLabel: 'Anything else?', msgPh: 'Your niche, where your audience lives, past collabs…', choices: ['Under 10k', '10k–100k', '100k–1M', '1M+'],
+        thanks: 'We’ll check out your channel and send your creator code within 2 working days.' },
+      b2b: { title: 'B2B', who: 'For accountants, tax advisors and relocation firms', icon: I.b2b,
+        pitch: 'Buy country memberships in bulk and give them to your clients. They track their days, you get the proof when you need it.',
+        perks: ['Bulk memberships at a lower price', 'Hand out codes from one place', 'Clients can share their reports with you'],
+        cta: 'Buy for your clients', bg: '#F5F1E8', fg: '#1C2B26', iconBg: '#FFFFFF', iconFg: '#264E43', tick: '#264E43', btnBg: '#264E43', btnFg: '#FFFFFF',
+        fields: [['Firm name', 'e.g. Smith & Co Accountants'], ['Work email', 'name@firm.com'], ['What you do', 'e.g. Tax accountant, relocation advisor']],
+        chooseLabel: 'How many memberships?', msgLabel: 'Tell us about your clients', msgPh: 'Where they live and work, what you help them with…', choices: ['10', '25', '50', '100+'],
+        thanks: 'We’ll email you pricing for your memberships within 2 working days.' }
+    };
+    const types = Object.entries(T).map(([k, t]) => ({ ...t, apply: () => this.setState({ open: k, sent: false, choice: null }) }));
+    const cur = T[S.open] || T.affiliate;
+    const f = { ...cur, iconBg: S.open === 'creator' ? '#264E43' : '#E4F1FE', iconFg: S.open === 'creator' ? '#CFE8FF' : '#264E43',
+      fields: cur.fields.map(([label, ph]) => ({ label, ph })),
+      choices: cur.choices.map((label) => ({ label, bd: S.choice === label ? '#264E43' : '#E3DED2', bg: S.choice === label ? '#EEF6FF' : '#FFFFFF', pick: () => this.setState({ choice: label }) })) };
+    return { types, f, open: !!S.open, form: !S.sent, sent: S.sent,
+      close: () => this.setState({ open: null, sent: false }), send: () => this.setState({ sent: true }) };
+  }
+}
+</script>
+</body>
+</html>

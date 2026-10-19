@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All trips</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+button{font-family:inherit}
+@keyframes dot{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.08s}.stg>*:nth-child(3){animation-delay:.16s}.stg>*:nth-child(n+4){animation-delay:.24s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+  <div style="flex-grow: 1; padding: 54px 24px 0; display: flex; flex-direction: column; overflow: hidden">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: center; gap: 8px"><a href="Trips.dc.html" aria-label="Back to trips" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a><h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #264E43">All trips</h1></div>
+      <a href="Planner.dc.html" aria-label="Plan a trip" style="width: 48px; height: 48px; border-radius: 24px; background: #264E43; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></a>
+    </div>
+
+    <div role="tablist" style="margin-top: 16px; display: flex; padding: 4px; border-radius: 14px; background: #F5F1E8">
+      <button role="tab" aria-selected="{{upSel}}" onClick="{{showUp}}" style="flex-grow: 1; flex-basis: 0; height: 40px; border-radius: 11px; border: none; background: {{upBg}}; font-size: 14px; font-weight: 600; color: {{upFg}}; cursor: pointer">Upcoming · 2</button>
+      <button role="tab" aria-selected="{{pastSel}}" onClick="{{showPast}}" style="flex-grow: 1; flex-basis: 0; height: 40px; border-radius: 11px; border: none; background: {{pastBg}}; font-size: 14px; font-weight: 600; color: {{pastFg}}; cursor: pointer">Past · 8</button>
+    </div>
+
+    <sc-if value="{{up}}" hint-placeholder-val="{{false}}">
+      <div class="stg" style="margin-top: 18px; display: flex; flex-direction: column; gap: 12px">
+        <a href="TripDetail.dc.html" aria-label="Spain trip, 10 to 24 October, see details" style="display: block; padding: 16px; border-radius: 18px; border: 1px solid #E3DED2; color: #1C2B26">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <dc-import name="Flag" code="es" w="30" h="21" hint-size="30px,21px"></dc-import>
+            <span style="flex-grow: 1"><span style="display: block; font-weight: 600; font-size: 16px">Spain</span><span style="display: block; font-size: 12.5px; color: #5E6D67">10 – 24 Oct · Madrid</span></span>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 26px; color: #264E43">15<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #5E6D67"> days</span></span>
+          </div>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #EFEBE2; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #3D5048"><span style="width: 6px; height: 6px; border-radius: 3px; background: #C98A1B"></span>Schengen <b style="color: #8A5D0F">62 of 90</b> when you're back · watch</div>
+        </a>
+        <div style="padding: 16px; border-radius: 18px; border: 1px solid #E3DED2">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <dc-import name="Flag" code="uk" w="30" h="21" hint-size="30px,21px"></dc-import>
+            <span style="flex-grow: 1"><span style="display: block; font-weight: 600; font-size: 16px">United Kingdom</span><span style="display: block; font-size: 12.5px; color: #5E6D67">18 – 21 Dec · London</span></span>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 26px; color: #264E43">3<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #5E6D67"> nights</span></span>
+          </div>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #EFEBE2; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #3D5048"><span style="width: 6px; height: 6px; border-radius: 3px; background: #3E8E68"></span>UK <b style="color: #2F7353">28 of 90</b> in this tax year · safe</div>
+        </div>
+        <div style="padding: 16px; border-radius: 18px; background: #E4F1FE; display: flex; gap: 12px; align-items: center">
+          <svg width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="22" r="2.5"></circle><circle cx="23" cy="8" r="2.5"></circle><path d="M9.5 21C17 20 13 10 20.5 9" stroke-dasharray="2.2 2.6"></path></svg>
+          <span style="font-size: 13.5px; line-height: 1.45; color: #264E43">Thinking about a trip? Tap <b>+</b> to see what it does to your days before you book.</span>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{past}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column">
+        <div role="tablist" aria-label="View" style="margin-top: 14px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{views}}" as="v" hint-placeholder-count="4">
+            <button role="tab" aria-selected="{{v.sel}}" onClick="{{v.pick}}" style="height: 56px; border-radius: 14px; border: 1.5px solid {{v.bd}}; background: {{v.bg}}; color: {{v.fg}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11.5px; font-weight: 600; cursor: pointer">
+              <sc-if value="{{v.isList}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"></path><circle cx="4.5" cy="6" r="1.3" fill="currentColor" stroke="none"></circle><circle cx="4.5" cy="12" r="1.3" fill="currentColor" stroke="none"></circle><circle cx="4.5" cy="18" r="1.3" fill="currentColor" stroke="none"></circle></svg></sc-if>
+              <sc-if value="{{v.isCal}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 9.5h16M8.5 3v4M15.5 3v4"></path><rect x="7.5" y="12.5" width="4" height="3" rx="0.6" fill="currentColor" stroke="none"></rect></svg></sc-if>
+              <sc-if value="{{v.isCty}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h6"></path></svg></sc-if>
+              <sc-if value="{{v.isYear}}" hint-placeholder-val="{{false}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="6" r="1.5"></circle><circle cx="10" cy="6" r="1.5"></circle><circle cx="15" cy="6" r="1.5" opacity=".35"></circle><circle cx="20" cy="6" r="1.5"></circle><circle cx="5" cy="12" r="1.5" opacity=".35"></circle><circle cx="10" cy="12" r="1.5"></circle><circle cx="15" cy="12" r="1.5"></circle><circle cx="20" cy="12" r="1.5" opacity=".35"></circle><circle cx="5" cy="18" r="1.5"></circle><circle cx="10" cy="18" r="1.5" opacity=".35"></circle><circle cx="15" cy="18" r="1.5"></circle><circle cx="20" cy="18" r="1.5"></circle></svg></sc-if>
+              {{v.label}}
+            </button>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{vList}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; flex-direction: column">
+            <sc-for list="{{trips}}" as="t" hint-placeholder-count="8">
+              <div style="display: flex; flex-direction: column">
+                <sc-if value="{{t.month}}" hint-placeholder-val="{{false}}"><div style="margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5E6D67">{{t.month}}</div></sc-if>
+                <a href="Country.dc.html#{{t.code}}" style="display: flex; align-items: center; gap: 12px; min-height: 56px; border-bottom: 1px solid #EFEBE2; color: #1C2B26">
+                  <dc-import name="Flag" code="{{t.code}}" w="26" h="18" hint-size="26px,18px"></dc-import>
+                  <span style="flex-grow: 1"><span style="display: block; font-weight: 600; font-size: 14.5px">{{t.name}}</span><span style="display: block; font-size: 12px; color: #5E6D67">{{t.dates}} · {{t.src}}</span></span>
+                  <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 16px; color: #264E43">{{t.days}}</span>
+                </a>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{vCal}}" hint-placeholder-val="{{false}}">
+          <div style="margin-top: 14px; display: flex; flex-direction: column">
+            <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px">
+              <sc-for list="{{chips}}" as="m" hint-placeholder-count="12">
+                <button onClick="{{m.pick}}" aria-label="{{m.full}}" aria-pressed="{{m.aria}}" style="height: 54px; border-radius: 10px; border: none; background: {{m.bg}}; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 0">
+                  <span style="width: 6px; height: 22px; border-radius: 3px; overflow: hidden; display: flex; flex-direction: column-reverse; background: {{m.empty}}">
+                    <sc-for list="{{m.segs}}" as="s" hint-placeholder-count="3"><span style="flex-grow: {{s.n}}; background: {{s.c}}"></span></sc-for>
+                  </span>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: {{m.fg}}">{{m.name}}</span>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="margin-top: 16px; display: flex; align-items: flex-end; justify-content: space-between">
+              <span style="white-space: nowrap; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1; letter-spacing: -0.02em; color: #264E43"><b style="font-weight: 700">{{monthName}}</b> <span style="font-weight: 300; color: #6D9488">2026</span></span>
+              <span style="display: flex; gap: 6px; white-space: nowrap">
+                <button onClick="{{hlHome}}" aria-pressed="{{homeAria}}" style="padding: 5px 10px; border-radius: 999px; border: 1.5px solid {{homeBd}}; background: {{homeBg}}; font-family: inherit; font-size: 12px; font-weight: 600; color: {{homeFg}}; cursor: pointer">{{mHome}} home</button>
+                <button onClick="{{hlAway}}" aria-pressed="{{awayAria}}" style="padding: 5px 10px; border-radius: 999px; border: 1.5px solid {{awayBd}}; background: {{awayBg2}}; font-family: inherit; font-size: 12px; font-weight: 600; color: #1C2B26; cursor: pointer">{{mAway}} away</button>
+              </span>
+            </div>
+
+            <div style="margin-top: 14px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center">
+              <span style="font-size: 11px; color: #7A8983">M</span><span style="font-size: 11px; color: #7A8983">T</span><span style="font-size: 11px; color: #7A8983">W</span><span style="font-size: 11px; color: #7A8983">T</span><span style="font-size: 11px; color: #7A8983">F</span><span style="font-size: 11px; color: #7A8983">S</span><span style="font-size: 11px; color: #7A8983">S</span>
+            </div>
+            <div style="margin-top: 6px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 6px">
+              <sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
+                <span style="position: relative; height: 46px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: {{c.bg}}; border-radius: {{c.r}}; opacity: {{c.op}}">
+                  <span style="width: 28px; height: 22px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: {{c.fw}}; color: {{c.fg}}; box-shadow: {{c.ring}}">{{c.n}}</span>
+                  <span style="height: 10px; display: flex; align-items: center">
+                    <sc-if value="{{c.flag}}" hint-placeholder-val="{{false}}"><dc-import name="Flag" code="{{c.code}}" w="14" h="10" hint-size="14px,10px"></dc-import></sc-if>
+                    <sc-if value="{{c.home}}" hint-placeholder-val="{{true}}"><span style="width: 5px; height: 5px; border-radius: 3px; background: #9CB9AF"></span></sc-if>
+                  </span>
+                </span>
+              </sc-for>
+            </div>
+
+            <div style="margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #5E6D67">{{tripsLabel}}</div>
+            <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px">
+              <sc-for list="{{mTrips}}" as="t" hint-placeholder-count="1">
+                <a href="{{t.href}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 0; border-radius: 16px; border: 1px solid #E3DED2; overflow: hidden; color: #1C2B26">
+                  <span style="align-self: stretch; width: 6px; margin: -12px 0; background: {{t.c}}"></span>
+                  <dc-import name="Flag" code="{{t.code}}" w="26" h="18" hint-size="26px,18px"></dc-import>
+                  <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">{{t.name}}</span><span style="font-size: 12px; color: #5E6D67">{{t.dates}}</span></span>
+                  <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 24px; color: #264E43">{{t.days}}<span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #5E6D67"> days</span></span>
+                </a>
+              </sc-for>
+              <sc-if value="{{noTrips}}" hint-placeholder-val="{{false}}"><div style="padding: 14px; border-radius: 16px; background: #F5F1E8; font-size: 13px; color: #3D5048">{{noTripsText}}</div></sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{vCty}}" hint-placeholder-val="{{false}}">
+          <div style="margin-top: 6px; display: flex; flex-direction: column">
+            <sc-for list="{{regions}}" as="g" hint-placeholder-count="4">
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <div style="margin-top: 12px; display: flex; align-items: baseline; justify-content: space-between">
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #5E6D67">{{g.name}}<span style="color: #9AA8A2"> {{g.note}}</span></span>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #7A8983">{{g.total}} days</span>
+                </div>
+                <sc-for list="{{g.items}}" as="k" hint-placeholder-count="2">
+                  <a href="Country.dc.html#{{k.code}}" style="display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 18px; border: 1px solid #E3DED2; color: #1C2B26">
+                <span style="display: flex; align-items: center; gap: 12px">
+                  <dc-import name="Flag" code="{{k.code}}" w="32" h="22" hint-size="32px,22px"></dc-import>
+                  <span style="flex-grow: 1"><span style="display: block; font-weight: 600; font-size: 15px">{{k.name}}</span><span style="display: block; font-size: 12px; color: #5E6D67">{{k.sub}}</span></span>
+                  <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 30px; line-height: 1; color: #264E43">{{k.days}}</span>
+                </span>
+                <span style="height: 6px; border-radius: 3px; background: #F5F1E8; overflow: hidden"><span style="display: block; height: 6px; border-radius: 3px; width: {{k.pct}}; background: {{k.col}}; transform-origin: left; animation: grow .7s ease-out {{k.delay}} both"></span></span>
+              </a>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{vYear}}" hint-placeholder-val="{{false}}">
+          <div style="margin-top: 16px; display: flex; flex-direction: column">
+            <div style="display: flex; align-items: baseline; gap: 8px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 18px; color: #264E43">Your 2026, day by day</span></div>
+            <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 5px">
+              <sc-for list="{{year}}" as="m" hint-placeholder-count="12">
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <span style="width: 26px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #5E6D67">{{m.name}}</span>
+                  <span style="display: flex; gap: 2px">
+                    <sc-for list="{{m.days}}" as="d" hint-placeholder-count="31"><span style="width: 7.3px; height: 16px; border-radius: 2px; background: {{d.c}}; animation: dot .25s ease-out {{d.t}} both"></span></sc-for>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 12px; color: #3D5048">
+              <sc-for list="{{legend}}" as="l" hint-placeholder-count="6"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{l.c}}"></span>{{l.name}}</span></sc-for>
+            </div>
+            <div style="margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: #E4F1FE; font-size: 13.5px; line-height: 1.45; color: #264E43"><b>268 days</b> counted · <b>110</b> abroad in 6 countries. Your longest trip: the UK, 24 days in spring.</div>
+            <a href="Wrapped.dc.html" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 16px; background: #264E43; color: #FFFFFF; font-size: 15px; font-weight: 600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke-opacity="0.4"></circle><path d="M12 3.5A8.5 8.5 0 1 1 3.5 12"></path></svg>Play your 2026</a>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+  <dc-import name="TabBar" active="trips" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); let h = ''; try { h = (window.location.hash || '').slice(1); } catch (e) {} this.state = { tab: h === 'upcoming' ? 'up' : 'past', view: ['list','cal','cty','year'].includes(h) ? h : (h === 'cal-aug' ? 'cal' : 'list'), month: h === 'cal-aug' ? 7 : 8, hl: null }; }
+  renderVals() {
+    const up = this.state.tab === 'up';
+    const view = this.state.view;
+    const seg = [['ae',20],['us',14],['ae',45],['uk',24],['it',8],['ae',18],['fr',12],['ae',21],['es',15],['uk',10],['ae',25],['es',20],['ae',17],['uk',7],['ae',12]];
+    const codes = [];
+    seg.forEach(([c, n]) => { for (let i = 0; i < n; i++) codes.push(c); });
+    const today = codes.length;
+    const MD = [31,28,31,30,31,30,31,31,30,31,30,31];
+    const MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const col = { ae: '#264E43', uk: '#7FAFD9', es: '#E0A33A', fr: '#6D9488', it: '#C9705A', us: '#8C78B8' };
+    const off = (m) => MD.slice(0, m).reduce((a, b) => a + b, 0);
+
+    const V = [['list','List'],['cal','Calendar'],['cty','Countries'],['year','Year']];
+    const views = V.map(([id, label]) => {
+      const on = view === id;
+      return { label, sel: on ? 'true' : 'false', bd: on ? '#264E43' : '#E3DED2', bg: on ? '#EEF6FF' : '#FFFFFF', fg: on ? '#264E43' : '#5E6D67',
+        isList: id === 'list', isCal: id === 'cal', isCty: id === 'cty', isYear: id === 'year', pick: () => this.setState({ view: id }) };
+    });
+
+    const trips = [
+      { month: 'SEPTEMBER', code: 'uk', name: 'United Kingdom', dates: '7 – 13 Sep', src: 'location', days: '7' },
+      { month: 'AUGUST', code: 'es', name: 'Spain', dates: '1 – 20 Aug', src: 'location', days: '20' },
+      { month: 'JUNE – JULY', code: 'uk', name: 'United Kingdom', dates: '27 Jun – 6 Jul', src: 'location', days: '10' },
+      { month: '', code: 'es', name: 'Spain', dates: '12 – 26 Jun', src: 'added by you', days: '15' },
+      { month: 'MAY', code: 'fr', name: 'France', dates: '10 – 21 May', src: 'added by you', days: '12' },
+      { month: 'MARCH – APRIL', code: 'it', name: 'Italy', dates: '14 – 21 Apr', src: 'added by you', days: '8' },
+      { month: '', code: 'uk', name: 'United Kingdom', dates: '21 Mar – 13 Apr', src: 'added by you', days: '24' },
+      { month: 'JANUARY', code: 'us', name: 'United States', dates: '21 Jan – 3 Feb', src: 'added by you', days: '14' }
+    ];
+
+    const m = this.state.month, o = off(m);
+    const lead = (4 + o + 6) % 7;
+    const tint = { uk: '#D6E7F6', es: '#F7E3BE', fr: '#D9E6E1', it: '#F1D4CC', us: '#E2DCF0' };
+    const cells = [];
+    for (let i = 0; i < lead; i++) cells.push({ n: '', flag: false, home: false, code: 'ae', bg: 'transparent', r: '0', op: '1', fw: '400', fg: '#1C2B26', ring: 'none' });
+    let mHome = 0, mAway = 0;
+    for (let d = 1; d <= MD[m]; d++) {
+      const idx = o + d - 1, c = codes[idx], past = idx < today, away = past && c !== 'ae';
+      const prevSame = d > 1 && codes[idx - 1] === c && away, nextSame = d < MD[m] && codes[idx + 1] === c && away && idx + 1 < today;
+      const dow = (lead + d - 1) % 7;
+      const leftR = !prevSame || dow === 0, rightR = !nextSame || dow === 6;
+      if (past) { if (c === 'ae') mHome++; else mAway++; }
+      const hl = this.state.hl, isHome = past && c === 'ae';
+      const homePrev = d > 1 && codes[idx - 1] === 'ae' && idx - 1 < today, homeNext = d < MD[m] && codes[idx + 1] === 'ae' && idx + 1 < today;
+      const hL = !homePrev || dow === 0, hR = !homeNext || dow === 6;
+      const showHome = hl === 'home' && isHome;
+      cells.push({ n: d, code: c || 'ae', flag: away && (!prevSame || dow === 0), home: isHome && !showHome,
+        bg: showHome ? '#D3E6DC' : (away ? tint[c] : 'transparent'),
+        r: showHome ? `${hL ? 12 : 0}px ${hR ? 12 : 0}px ${hR ? 12 : 0}px ${hL ? 12 : 0}px` : (away ? `${leftR ? 12 : 0}px ${rightR ? 12 : 0}px ${rightR ? 12 : 0}px ${leftR ? 12 : 0}px` : '0'),
+        op: !past ? '0.38' : (hl === 'home' && away) || (hl === 'away' && isHome) ? '0.25' : '1', fw: away || idx === today - 1 ? '600' : '400', fg: '#1C2B26',
+        ring: idx === today - 1 ? 'inset 0 0 0 1.6px #264E43' : 'none' });
+    }
+    const runs = [];
+    for (let d = 1; d <= MD[m]; d++) { const idx = o + d - 1, c = codes[idx]; if (idx >= today || c === 'ae') continue; const last = runs[runs.length - 1]; if (last && last.code === c && last.end === d - 1) last.end = d; else runs.push({ code: c, start: d, end: d }); }
+    const NM = { uk: 'United Kingdom', es: 'Spain', fr: 'France', it: 'Italy', us: 'United States' };
+    const mon3 = MN[m].slice(0, 3);
+    const mTrips = runs.map(r => ({ code: r.code, name: NM[r.code], dates: r.start === r.end ? `${r.start} ${mon3}` : `${r.start} – ${r.end} ${mon3}`, days: r.end - r.start + 1, c: col[r.code], href: 'Country.dc.html#' + r.code }));
+    const chips = MD.map((n, mi) => {
+      const cnt = {}; let any = 0;
+      for (let d = 0; d < n; d++) { const idx = off(mi) + d; if (idx < today) { const c = codes[idx]; cnt[c] = (cnt[c] || 0) + 1; any++; } }
+      const segs = Object.keys(cnt).map(k => ({ n: cnt[k], c: k === 'ae' ? (mi === m ? '#6D9488' : '#C9D6D1') : col[k] }));
+      const on = mi === m;
+      return { name: MN[mi].slice(0, 1), full: MN[mi], segs, empty: any ? 'transparent' : '#EFEBE2', aria: on ? 'true' : 'false', bg: on ? '#264E43' : '#F5F1E8', bd: 'transparent', fg: on ? '#FFFFFF' : '#5E6D67', pick: () => this.setState({ month: mi }) };
+    });
+    const mainAway = runs.length ? tint[runs[0].code] : '#F5F1E8';
+
+    const totals = {};
+    codes.forEach((c) => { totals[c] = (totals[c] || 0) + 1; });
+    const K = [
+      ['ae','United Arab Emirates','Home base · all year'],
+      ['uk','United Kingdom','3 trips · since 21 Mar'],
+      ['es','Spain','2 trips · since 12 Jun'],
+      ['us','United States','1 trip · 21 Jan'],
+      ['fr','France','1 trip · 10 May'],
+      ['it','Italy','1 trip · 14 Apr']
+    ];
+    const countries = K.map(([code, name, sub], i) => ({ code, name, sub, days: totals[code], pct: (totals[code] / 158 * 100).toFixed(1) + '%', col: col[code], delay: (0.1 + i * 0.08).toFixed(2) + 's' }));
+    const R = [['GULF', '', ['ae']], ['UK', '', ['uk']], ['EUROPE', '· SCHENGEN', ['es', 'fr', 'it']], ['NORTH AMERICA', '', ['us']]];
+    const regions = R.map(([name, note, cs]) => { const items = countries.filter(c => cs.includes(c.code)); return { name, note, items, total: items.reduce((a, c) => a + c.days, 0) }; });
+
+    const year = MD.map((n, mi) => {
+      const days = [];
+      for (let d = 0; d < 31; d++) {
+        const idx = off(mi) + d;
+        let c = 'transparent';
+        if (d < n) c = idx < today ? col[codes[idx]] : '#EFEBE2';
+        days.push({ c, t: (mi * 0.06 + d * 0.004).toFixed(3) + 's' });
+      }
+      return { name: MN[mi].slice(0, 3).toUpperCase(), days };
+    });
+    const legend = [['ae','UAE'],['uk','UK'],['es','Spain'],['us','USA'],['fr','France'],['it','Italy']].map(([k, name]) => ({ c: col[k], name }));
+
+    return {
+      up, past: !up, trips, views, cells, countries, year, legend,
+      vList: view === 'list', vCal: view === 'cal', vCty: view === 'cty', vYear: view === 'year',
+      hlHome: () => this.setState({ hl: this.state.hl === 'home' ? null : 'home' }), hlAway: () => this.setState({ hl: this.state.hl === 'away' ? null : 'away' }),
+      homeAria: this.state.hl === 'home' ? 'true' : 'false', awayAria: this.state.hl === 'away' ? 'true' : 'false',
+      homeBg: this.state.hl === 'home' ? '#264E43' : '#EEF4F1', homeFg: this.state.hl === 'home' ? '#FFFFFF' : '#264E43', homeBd: this.state.hl === 'home' ? '#264E43' : '#EEF4F1',
+      awayBg2: mainAway, awayBd: this.state.hl === 'away' ? '#1C2B26' : mainAway,
+      regions, monthName: MN[m], mHome, mAway, chips, mTrips, noTrips: mTrips.length === 0, noTripsText: o >= today ? 'Nothing here yet. Trips you add will show up here.' : 'A month at home. No trips abroad.', tripsLabel: 'TRIPS IN ' + MN[m].toUpperCase(), awayBg: mainAway,
+      prevM: () => this.setState({ month: Math.max(0, m - 1) }),
+      nextM: () => this.setState({ month: Math.min(11, m + 1) }),
+      upSel: up ? 'true' : 'false', pastSel: up ? 'false' : 'true',
+      upBg: up ? '#FFFFFF' : 'transparent', pastBg: up ? 'transparent' : '#FFFFFF',
+      upFg: up ? '#264E43' : '#5E6D67', pastFg: up ? '#5E6D67' : '#264E43',
+      showUp: () => this.setState({ tab: 'up' }), showPast: () => this.setState({ tab: 'past' })
+    };
+  }
+}
+</script>
+</body>
+</html>

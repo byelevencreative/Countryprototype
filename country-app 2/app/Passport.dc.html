@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your passport</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+button{font-family:inherit}
+@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes flipNextA{from{transform:rotateY(0)}to{transform:rotateY(-178deg)}}
+@keyframes flipNextB{from{transform:rotateY(0)}to{transform:rotateY(-178deg)}}
+@keyframes flipPrevA{0%{transform:rotateY(-178deg);opacity:1}85%{opacity:1}100%{transform:rotateY(0);opacity:0}}
+@keyframes flipPrevB{0%{transform:rotateY(-178deg);opacity:1}85%{opacity:1}100%{transform:rotateY(0);opacity:0}}
+@keyframes inA{0%,35%{opacity:0;transform:scale(1.25) rotate(var(--r))}70%{opacity:1;transform:scale(.96) rotate(var(--r))}100%{opacity:.92;transform:rotate(var(--r))}}
+@keyframes inB{0%,35%{opacity:0;transform:scale(1.25) rotate(var(--r))}70%{opacity:1;transform:scale(.96) rotate(var(--r))}100%{opacity:.92;transform:rotate(var(--r))}}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; padding: 52px 20px 30px; display: flex; flex-direction: column; overflow: hidden">
+  <div style="display: flex; align-items: center; gap: 8px">
+    <a href="Map.dc.html" aria-label="Back to map" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <h1 style="margin: 0; flex-grow: 1; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #264E43">Your passport</h1>
+    <a href="PassportIntro.dc.html" aria-label="Open the passport again" style="height: 34px; padding: 0 12px; border-radius: 17px; border: 1px solid #E3DED2; box-sizing: border-box; display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #264E43"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"></path><path d="M4 4v4.5h4.5"></path></svg>Replay</a>
+  </div>
+  <p style="margin: 2px 0 0; font-size: 14px; color: #4F6159">{{subtitle}}</p>
+
+  <div style="margin-top: 12px; display: flex; align-items: center; justify-content: space-between">
+    <div role="radiogroup" aria-label="Period" style="display: flex; padding: 3px; border-radius: 12px; background: #F5F1E8">
+      <sc-for list="{{ranges}}" as="r" hint-placeholder-count="2">
+        <button role="radio" aria-checked="{{r.aria}}" onClick="{{r.pick}}" style="height: 28px; padding: 0 11px; border-radius: 9px; border: none; background: {{r.bg}}; box-shadow: {{r.sh}}; font-size: 12.5px; font-weight: 600; color: {{r.fg}}; cursor: pointer">{{r.label}}</button>
+      </sc-for>
+    </div>
+    <a href="StampsAll.dc.html" style="height: 34px; padding: 0 12px; border-radius: 17px; background: #E4F1FE; display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #264E43"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"></rect><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"></rect><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"></rect><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"></rect></svg>See all {{total}}</a>
+  </div>
+
+  <div onPointerDown="{{down}}" onPointerUp="{{up}}" style="margin-top: 12px; position: relative; height: 520px; perspective: 1700px; touch-action: pan-y; user-select: none">
+    <div style="position: absolute; inset: 0; border-radius: 6px 18px 18px 6px; background: #F5F1E8; border: 1px solid #E3DED2; box-shadow: 1px 1px 0 #E3DED2, 2px 2px 0 #F5F1E8, 3px 3px 0 #E3DED2, 0 10px 26px rgba(28,43,38,.10); overflow: hidden">
+      <svg width="350" height="520" viewBox="0 0 350 520" fill="none" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+        <g stroke="#E6DFD0" stroke-width="0.8"><path d="M-20 60 Q 90 20 175 60 T 370 60"></path><path d="M-20 90 Q 90 50 175 90 T 370 90"></path><path d="M-20 270 Q 90 230 175 270 T 370 270"></path><path d="M-20 300 Q 90 260 175 300 T 370 300"></path><path d="M-20 470 Q 90 430 175 470 T 370 470"></path></g>
+      </svg>
+      <span style="position: absolute; left: 0; top: 0; bottom: 0; width: 18px; background: linear-gradient(90deg, rgba(28,43,38,.10), rgba(28,43,38,0))"></span>
+      <sc-for list="{{slots}}" as="s" hint-placeholder-count="6">
+        <div role="img" aria-label="{{s.label}}" style="position: absolute; left: {{s.x}}px; top: {{s.y}}px; --r: {{s.r}}deg; transform: rotate({{s.r}}deg); opacity: .92; animation: {{s.anim}} .7s ease-out {{s.t}} both">
+          <dc-import name="Stamp" code="{{s.code}}" mode="{{s.mode}}" date="{{s.date}}" w="156" hint-size="156px,104px"></dc-import>
+        </div>
+      </sc-for>
+      <div style="position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; color: #B8AE98">{{footer}}</div>
+    </div>
+    <sc-if value="{{turning}}" hint-placeholder-val="{{false}}">
+      <div style="position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d; animation: {{leafAnim}} .55s cubic-bezier(.5,.05,.3,1) both; pointer-events: none" aria-hidden="true">
+        <div class="face" style="border-radius: 6px 18px 18px 6px; background: #F5F1E8; border: 1px solid #E3DED2; box-sizing: border-box; box-shadow: inset 14px 0 18px -14px rgba(28,43,38,.2)"><svg width="350" height="520" viewBox="0 0 350 520" fill="none" style="position: absolute; left: 0; top: 0"><g stroke="#E6DFD0" stroke-width="0.8"><path d="M-20 60 Q 90 20 175 60 T 370 60"></path><path d="M-20 270 Q 90 230 175 270 T 370 270"></path><path d="M-20 470 Q 90 430 175 470 T 370 470"></path></g></svg></div>
+        <div class="face" style="transform: rotateY(180deg); border-radius: 18px 6px 6px 18px; background: #EFE9DC; border: 1px solid #E3DED2; box-sizing: border-box"></div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between">
+    <button onClick="{{prev}}" aria-label="Previous page" style="width: 36px; height: 36px; border-radius: 18px; border: 1px solid #E3DED2; background: #FFFFFF; opacity: {{prevOp}}; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 5px">
+      <span style="font-size: 12.5px; font-weight: 600; color: #264E43">{{pageLabel}}</span>
+      <span style="display: flex; gap: 5px"><sc-for list="{{dots}}" as="d" hint-placeholder-count="2"><span style="width: {{d.w}}px; height: 6px; border-radius: 3px; background: {{d.c}}; transition: width .25s"></span></sc-for></span>
+    </div>
+    <button onClick="{{next}}" aria-label="Next page" style="width: 36px; height: 36px; border-radius: 18px; border: none; background: #264E43; opacity: {{nextOp}}; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <a href="TripDetail.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: #E4F1FE; color: #264E43; animation: fadeup .45s ease-out .2s both">
+    <span style="width: 40px; height: 30px; border-radius: 6px; border: 1.5px dashed #264E43; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 11px">MAD</span>
+    <span style="flex-grow: 1; font-size: 13.5px; line-height: 1.4"><b>Next stamp:</b> Spain, 10 Oct</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { range: 0, page: 0, n: 0, dir: 1, turning: false }; this.x0 = null; }
+  componentWillUnmount() { clearTimeout(this.tt); }
+  pages() {
+    // Every entry gets a stamp. Newest first. [code, mode, stamp date, label]
+    const ALL = [
+      [2026, 'ae', 'air', '1 4  SEP  2026', 'UAE · 14 Sep'],
+      [2026, 'gb', 'air', '07 SEP 2026', 'UK · 7 Sep'],
+      [2026, 'gb', 'land', '01 JUL 2026', 'UK · 1 Jul'],
+      [2026, 'es', 'air', '12.06.26', 'Spain · 12 Jun'],
+      [2026, 'fr', 'air', '10.05.26', 'France · 10 May'],
+      [2026, 'it', 'air', '14.04.26', 'Italy · 14 Apr'],
+      [2026, 'gb', 'air', '21 MAR 2026', 'UK · 21 Mar'],
+      [2026, 'us', 'air', 'JAN 21 2026', 'USA · 21 Jan'],
+      [2025, 'mv', 'air', '28 DEC 2025', 'Maldives · 28 Dec'],
+      [2025, 'om', 'land', '02-11-2025', 'Oman · 2 Nov'],
+      [2025, 'tr', 'sea', '09.10.2025', 'Türkiye · 9 Oct'],
+      [2025, 'pt', 'air', '03.08.25', 'Portugal · 3 Aug'],
+      [2025, 'ge', 'air', '15.06.25', 'Georgia · 15 Jun'],
+      [2025, 'sg', 'air', '20 APR 2025', 'Singapore · 20 Apr'],
+      [2025, 'th', 'air', '18 APR 2025', 'Thailand · 18 Apr'],
+      [2025, 'jp', 'air', '02 MAR 2025', 'Japan · 2 Mar'],
+      [2025, 'gb', 'air', '10 JAN 2025', 'UK · 10 Jan'],
+    ];
+
+    const list = this.state.range === 0 ? ALL.filter(s => s[0] === 2026) : ALL;
+    const pages = [];
+    [...new Set(list.map(s => s[0]))].forEach(y => { const ys = list.filter(s => s[0] === y); for (let i = 0; i < ys.length; i += 6) pages.push({ year: y, items: ys.slice(i, i + 6) }); });
+    return { list, pages };
+  }
+  go(d) {
+    const { pages } = this.pages(); const p = this.state.page + d;
+    if (p < 0 || p >= pages.length) return;
+    clearTimeout(this.tt);
+    this.setState({ page: p, dir: d, n: this.state.n + 1, turning: true });
+    this.tt = setTimeout(() => this.setState({ turning: false }), 600);
+  }
+  renderVals() {
+    const { range, page, n, dir, turning } = this.state;
+    const { list, pages } = this.pages();
+    const pg = pages[Math.min(page, pages.length - 1)];
+    const SL = [[14, 24, -6], [180, 46, 5], [22, 178, 3], [176, 200, -4], [12, 340, -8], [178, 358, 6]];
+    const par = n % 2 ? 'B' : 'A';
+    const slots = pg.items.map(([y, code, mode, date, label], i) => ({ code, mode, date, label, x: SL[i][0], y: SL[i][1], r: SL[i][2], anim: 'in' + par, t: (0.12 + i * 0.07).toFixed(2) + 's' }));
+    const countries = new Set(list.map(s => s[1])).size;
+    const ranges = ['2026', 'All time'].map((label, i) => {
+      const on = range === i;
+      return { label, aria: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', sh: on ? '0 1px 3px rgba(28,43,38,.12)' : 'none', fg: on ? '#264E43' : '#5E6D67', pick: () => this.setState({ range: i, page: 0, n: n + 1, turning: false }) };
+    });
+    return {
+      slots, ranges, total: 17,
+      subtitle: range === 0 ? list.length + ' stamps in 2026 · ' + countries + ' countries' : list.length + ' stamps · ' + countries + ' countries since 2025',
+      footer: 'VISAS · ' + pg.year + ' · PAGE ' + (page + 1),
+      pageLabel: 'Page ' + (page + 1) + ' of ' + pages.length,
+      dots: pages.map((_, i) => ({ w: i === page ? 16 : 6, c: i === page ? '#264E43' : '#D5DDD9' })),
+      prevOp: page > 0 ? '1' : '0.35', nextOp: page < pages.length - 1 ? '1' : '0.35',
+      prev: () => this.go(-1), next: () => this.go(1),
+      turning, leafAnim: (dir > 0 ? 'flipNext' : 'flipPrev') + par,
+      down: (e) => { this.x0 = e.clientX; },
+      up: (e) => { if (this.x0 == null) return; const dx = e.clientX - this.x0; this.x0 = null; if (dx < -40) this.go(1); else if (dx > 40) this.go(-1); },
+    };
+  }
+}
+</script>
+</body>
+</html>

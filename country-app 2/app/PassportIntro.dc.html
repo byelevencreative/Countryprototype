@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Opening your passport</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #E8F2FB; position: relative; overflow: hidden">
+  <video ref="{{vref}}" src="passport.mp4" muted playsinline preload="auto" onPlaying="{{onPlaying}}" onEnded="{{done}}" onError="{{done}}" aria-label="Your passport opens, the pages flick through and your six stamps land" style="position: absolute; left: 0; top: 0; width: 390px; height: 844px; object-fit: cover"></video>
+
+  <a ref="{{aref}}" href="Passport.dc.html" aria-label="Go to your stamps" style="position: absolute; inset: 0; z-index: 1"></a>
+
+  <sc-if value="{{needTap}}" hint-placeholder-val="{{false}}">
+    <button onClick="{{play}}" aria-label="Open passport" style="position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 42px; border: none; background: #264E43; cursor: pointer; z-index: 3; display: flex; align-items: center; justify-content: center; animation: breathe 1.8s ease-in-out infinite"><svg width="30" height="30" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></button>
+  </sc-if>
+  <a href="Passport.dc.html" style="position: absolute; top: 50px; right: 16px; z-index: 3; height: 36px; padding: 0 14px; border-radius: 18px; background: rgba(255,255,255,0.75); display: flex; align-items: center; font-size: 13px; font-weight: 600">Skip</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { phase: 'idle' }; this.el = null; this.a = null; }
+  componentDidMount() { this.tryPlay(); }
+  tryPlay() {
+    const v = this.el;
+    if (!v) return;
+    v.muted = true; v.defaultMuted = true; v.setAttribute('muted', '');
+    try { v.currentTime = 0; } catch (e) {}
+    const p = v.play();
+    if (p && p.catch) p.catch(() => this.setState({ phase: 'blocked' }));
+  }
+  finish() { this.setState({ phase: 'ended' }); setTimeout(() => { if (this.a) this.a.click(); }, 250); }
+  renderVals() {
+    const ph = this.state.phase;
+    return {
+      vref: (el) => { if (el && el !== this.el) { this.el = el; this.tryPlay(); } },
+      aref: (el) => { if (el) this.a = el; },
+      needTap: ph === 'blocked',
+      onPlaying: () => this.setState({ phase: 'playing' }),
+      done: () => this.finish(),
+      play: () => { this.setState({ phase: 'idle' }); this.tryPlay(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

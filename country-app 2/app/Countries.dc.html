@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your countries</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+button{font-family:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.stg>*{animation:rise .4s ease-out both}.stg>*:nth-child(2){animation-delay:.04s}.stg>*:nth-child(3){animation-delay:.08s}.stg>*:nth-child(4){animation-delay:.12s}.stg>*:nth-child(5){animation-delay:.16s}.stg>*:nth-child(6){animation-delay:.2s}
+.bar{transform-origin:left;animation:grow .7s ease-out .2s both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="width: 390px; height: 1560px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+  <div style="flex-grow: 1; padding: 52px 20px 0; display: flex; flex-direction: column">
+
+    <div style="display: flex; align-items: center; gap: 8px">
+      <a href="Map.dc.html" aria-label="Back to map" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #264E43">Your countries</h1>
+    </div>
+
+    <div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between">
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 34px; line-height: 1; color: #264E43">6</span>
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 22px; color: #6D9488">of 233 countries</span>
+      </div>
+      <div role="radiogroup" aria-label="Period" style="display: flex; padding: 3px; border-radius: 12px; background: #F5F1E8">
+        <sc-for list="{{ranges}}" as="r" hint-placeholder-count="2">
+          <button role="radio" aria-checked="{{r.aria}}" onClick="{{r.pick}}" style="height: 30px; padding: 0 10px; border-radius: 9px; border: none; background: {{r.bg}}; box-shadow: {{r.sh}}; font-size: 12.5px; font-weight: 600; color: {{r.fg}}; cursor: pointer">{{r.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="margin-top: 10px; height: 8px; border-radius: 4px; background: #EEF1EF; overflow: hidden"><div class="bar" style="width: 3%; min-width: 10px; height: 100%; border-radius: 4px; background: #264E43"></div></div>
+    <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px">
+      <span style="padding: 5px 10px; border-radius: 999px; background: #F5F1E8; font-size: 12px; color: #4F6159">Europe <b style="color: #264E43">4</b></span>
+      <span style="padding: 5px 10px; border-radius: 999px; background: #F5F1E8; font-size: 12px; color: #4F6159">Asia <b style="color: #264E43">1</b></span>
+      <span style="padding: 5px 10px; border-radius: 999px; background: #F5F1E8; font-size: 12px; color: #4F6159">North America <b style="color: #264E43">1</b></span>
+    </div>
+
+    <div style="margin-top: 22px; display: flex; align-items: center; justify-content: space-between">
+      <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: #1C2B26">Visited</h2>
+      <div role="radiogroup" aria-label="Sort" style="display: flex; gap: 4px">
+        <sc-for list="{{sorts}}" as="s" hint-placeholder-count="3">
+          <button role="radio" aria-checked="{{s.aria}}" onClick="{{s.pick}}" style="height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid {{s.bd}}; background: {{s.bg}}; font-size: 12px; font-weight: 600; color: {{s.fg}}; cursor: pointer">{{s.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="stg" style="margin-top: 10px; display: flex; flex-direction: column">
+      <sc-for list="{{rows}}" as="c" hint-placeholder-count="6">
+        <a href="{{c.href}}" style="display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #EEF1EF; color: #1C2B26">
+          <dc-import name="Flag" code="{{c.code}}" w="32" h="23" hint-size="32px,23px"></dc-import>
+          <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+            <span style="display: flex; align-items: center; gap: 6px"><span style="font-size: 15px; font-weight: 500">{{c.name}}</span><sc-if value="{{c.home}}" hint-placeholder-val="{{false}}"><span style="padding: 2px 6px; border-radius: 6px; background: #E4F1FE; font-size: 10.5px; font-weight: 600; color: #264E43">Home</span></sc-if></span>
+            <span style="font-size: 12px; color: #5E6D67">{{c.sub}}</span>
+            <span style="height: 4px; border-radius: 2px; background: #EEF1EF; overflow: hidden"><span class="bar" style="display: block; width: {{c.pct}}%; height: 100%; border-radius: 2px; background: #264E43"></span></span>
+          </span>
+          <span style="width: 64px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #4F6159">{{c.days}} days</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9AA8A2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </sc-for>
+    </div>
+
+    <a href="Wishlist.dc.html" aria-label="Open your wishlist, {{wishCount}}" style="margin-top: 22px; padding: 14px 14px 14px 16px; border-radius: 16px; border: 1px solid #E3DED2; display: flex; align-items: center; gap: 12px; color: #1C2B26">
+      <span style="width: 40px; height: 40px; border-radius: 20px; background: #FDF2F1; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="#C0262D" stroke="#C0262D" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"></path></svg></span>
+      <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Wishlist</span><span style="font-size: 12.5px; color: #5E6D67; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{wishSub}}</span></span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #4F6159">{{wishN}}</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 5l7 7-7 7"></path></svg>
+    </a>
+
+    <div style="margin-top: 22px; display: flex; align-items: center; justify-content: space-between">
+      <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: #1C2B26">Not yet <span style="font-size: 12px; font-weight: 500; color: #5E6D67">· A–Z</span></h2>
+      <span style="font-size: 12px; color: #5E6D67">227 to go</span>
+    </div>
+    <div style="margin-top: 6px; display: flex; flex-direction: column">
+      <sc-for list="{{notyet}}" as="n" hint-placeholder-count="15">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #EEF1EF">
+          <span style="filter: grayscale(1); opacity: .45; display: flex"><dc-import name="Flag" code="{{n.code}}" w="32" h="23" hint-size="32px,23px"></dc-import></span>
+          <span style="flex-grow: 1; font-size: 15px; color: #8A9792">{{n.name}}</span>
+          <a href="Planner.dc.html" style="font-size: 13px; font-weight: 600; color: #264E43">Plan a trip</a>
+          <button onClick="{{n.toggle}}" aria-label="{{n.label}}" aria-pressed="{{n.aria}}" style="width: 32px; height: 32px; margin-right: -6px; padding: 0; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="{{n.fill}}" stroke="{{n.stroke}}" stroke-width="2" stroke-linejoin="round" style="transition: transform .2s; transform: scale({{n.sc}})"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"></path></svg></button>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{toast}}" hint-placeholder-val="{{false}}"><div style="position: fixed; left: 50%; bottom: 104px; transform: translateX(-50%); padding: 10px 16px; border-radius: 12px; background: #1C2B26; color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; z-index: 5">{{toast}}</div></sc-if>
+  </div>
+  <dc-import name="TabBar" active="map" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1560}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { range: 0, sort: 0, wish: ['pt', 'de'], toast: '' }; }
+  renderVals() {
+    const ranges = ['2026', 'All time'].map((label, i) => {
+      const on = this.state.range === i;
+      return { label, aria: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', sh: on ? '0 1px 3px rgba(28,43,38,.12)' : 'none', fg: on ? '#264E43' : '#5E6D67', pick: () => this.setState({ range: i }) };
+    });
+    const sorts = ['Most days', 'A–Z', 'Recent'].map((label, i) => {
+      const on = this.state.sort === i;
+      return { label, aria: on ? 'true' : 'false', bg: on ? '#264E43' : '#FFFFFF', bd: on ? '#264E43' : '#E3DED2', fg: on ? '#FFFFFF' : '#4F6159', pick: () => this.setState({ sort: i }) };
+    });
+    // [code, name, days, trips, last (sortable), last label, home]
+    // [code, name, days, trips, last (sortable), last label, home, work, pleasure, last trip]
+    const D = [
+      ['ae', 'United Arab Emirates', 158, 0, 20260914, 'Here now', true, 0, 0, 'Here now'],
+      ['uk', 'United Kingdom', 41, 3, 20260913, 'last 13 Sep', false, 22, 19, '7 – 13 Sep · Work'],
+      ['es', 'Spain', 35, 2, 20260612, 'last 12 Jun', false, 16, 19, '12 – 30 Jun · Pleasure'],
+      ['us', 'United States', 14, 1, 20260121, 'last 21 Jan', false, 14, 0, '21 Jan – 3 Feb · Work'],
+      ['fr', 'France', 11, 1, 20260510, 'last 10 May', false, 0, 11, '10 – 20 May · Pleasure'],
+      ['it', 'Italy', 9, 1, 20260414, 'last 14 Apr', false, 0, 9, '14 – 22 Apr · Pleasure'],
+    ];
+    const s = this.state.sort;
+    const sorted = [...D].sort((a, b) => s === 0 ? b[2] - a[2] : s === 1 ? a[1].localeCompare(b[1]) : b[4] - a[4]);
+    const rows = sorted.map(([code, name, days, trips, , last, home]) => ({
+      code, name, days, home, href: 'Country.dc.html#' + (home ? 'ae' : code), pct: Math.max(3, Math.round(days / 158 * 100)),
+      sub: home ? 'Home base · ' + last : trips + (trips === 1 ? ' trip' : ' trips') + ' · ' + last,
+    }));
+    const ALL = { pt: 'Portugal', de: 'Germany', af: 'Afghanistan', al: 'Albania', dz: 'Algeria', ad: 'Andorra', ao: 'Angola', ar: 'Argentina', am: 'Armenia', au: 'Australia', at: 'Austria', az: 'Azerbaijan', bs: 'Bahamas', bh: 'Bahrain', bd: 'Bangladesh', be: 'Belgium', br: 'Brazil' };
+    const NOTES = { pt: 'Saved 2 Sep', de: 'Saved 18 Aug' };
+    const W = this.state.wish;
+    const toggle = (code) => () => {
+      const on = W.includes(code);
+      this.setState({ wish: on ? W.filter(c => c !== code) : [code, ...W], toast: on ? ALL[code] + ' removed from wishlist' : ALL[code] + ' added to wishlist' });
+      clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: '' }), 1800);
+    };
+    const wish = W.map(code => ({ code, name: ALL[code], note: NOTES[code] || 'Saved just now', toggle: toggle(code) }));
+    const notyet = ['af','al','dz','ad','ao','ar','am','au','at','az','bs','bh','bd','be','br'].map(code => {
+      const on = W.includes(code);
+      return { code, name: ALL[code], toggle: toggle(code), aria: on ? 'true' : 'false', label: (on ? 'Remove ' : 'Add ') + ALL[code] + (on ? ' from' : ' to') + ' wishlist', fill: on ? '#C0262D' : 'none', stroke: on ? '#C0262D' : '#9AA8A2', sc: on ? 1.12 : 1 };
+    });
+    return { ranges, sorts, rows, notyet, wish, hasWish: W.length > 0, noWish: W.length === 0, wishCount: W.length + (W.length === 1 ? ' country' : ' countries'), wishN: W.length, wishSub: W.length ? W.map(c => ALL[c]).join(', ') : 'Tap a heart below to save a country', toast: this.state.toast };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Correct a day</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
+@keyframes shade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #56716A; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden">
+  <div style="background: #FFFFFF; border-radius: 28px 28px 0 0; padding: 12px 24px 34px; display: flex; flex-direction: column; animation: sheet .45s cubic-bezier(.2,.9,.3,1) .1s both">
+    <span style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #E3DED2"></span>
+    <div style="margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6D9488">THU 10 SEP 2026</div>
+    <h1 style="margin: 6px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.15; letter-spacing: -0.02em; color: #264E43">Where were you this day?</h1>
+    <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #4F6159">Your phone was off, so we had no location. Pick where you were.</p>
+
+    <div role="radiogroup" aria-label="Country" style="margin-top: 18px; display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+        <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 0 16px; border-radius: 14px; border: 1.5px solid {{o.bd}}; background: {{o.bg}}; text-align: left; cursor: pointer">
+          <dc-import name="Flag" code="{{o.code}}" w="28" h="20" hint-size="28px,20px"></dc-import>
+          <span style="flex-grow: 1"><span style="display: block; font-weight: 600; font-size: 15px; color: #1C2B26">{{o.name}}</span><span style="display: block; font-size: 12px; color: #5E6D67">{{o.sub}}</span></span>
+          <span style="width: 22px; height: 22px; border-radius: 11px; border: 1.5px solid {{o.bd}}; background: {{o.dot}}; box-shadow: inset 0 0 0 4px #FFFFFF"></span>
+        </button>
+      </sc-for>
+      <button style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px; border-radius: 14px; border: 1px dashed #6D9488; background: #FFFFFF; font-size: 14px; font-weight: 600; color: #264E43; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Somewhere else</button>
+    </div>
+
+    <div style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; min-height: 48px; border-top: 1px solid #EFEBE2; border-bottom: 1px solid #EFEBE2">
+      <span><span style="display: block; font-size: 14.5px; font-weight: 500">Travel day</span><span style="display: block; font-size: 12px; color: #5E6D67">Counted in two countries</span></span>
+      <button role="switch" aria-checked="{{travel}}" aria-label="Travel day" onClick="{{toggleTravel}}" style="width: 50px; height: 30px; border-radius: 15px; border: none; background: {{swBg}}; position: relative; cursor: pointer"><span style="position: absolute; top: 3px; left: {{swX}}; width: 24px; height: 24px; border-radius: 12px; background: #FFFFFF"></span></button>
+    </div>
+    <div style="margin-top: 12px; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; border-radius: 12px; background: #F5F1E8; font-size: 13px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5l-8 8a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9.7 17.2a1.7 1.7 0 0 1-2.4-2.4L15 7"></path></svg>
+      <span style="flex-grow: 1">boarding-pass-LHR.pdf</span><span style="color: #5E6D67; font-size: 12px">Proof</span>
+    </div>
+
+    <a href="Country.dc.html" style="margin-top: 18px; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 16px; background: #264E43; color: #FFFFFF; font-weight: 600; font-size: 16px">Save change</a>
+    <p style="margin: 10px 0 0; text-align: center; font-size: 12px; line-height: 1.45; color: #5E6D67">Edited days get a small pencil mark and are listed in your report.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { pick: 'uk', travel: false }; }
+  renderVals() {
+    const list = [
+      { code: 'uk', name: 'United Kingdom', sub: 'You were there on 9 and 11 Sep' },
+      { code: 'ae', name: 'United Arab Emirates', sub: 'Your home base' }
+    ];
+    const opts = list.map((o) => {
+      const on = this.state.pick === o.code;
+      return { ...o, on: on ? 'true' : 'false', bd: on ? '#264E43' : '#E3DED2', bg: on ? '#EEF6FF' : '#FFFFFF', dot: on ? '#264E43' : '#FFFFFF', pick: () => this.setState({ pick: o.code }) };
+    });
+    const t = this.state.travel;
+    return { opts, travel: t ? 'true' : 'false', swBg: t ? '#264E43' : '#D9D4C8', swX: t ? '23px' : '3px', toggleTravel: () => this.setState({ travel: !t }) };
+  }
+}
+</script>
+</body>
+</html>

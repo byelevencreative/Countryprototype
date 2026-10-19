@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plan a trip</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes extend{0%,30%{width:61%}100%{width:69%}}
+@keyframes sweep{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.05s}.stg>*:nth-child(3){animation-delay:.1s}.stg>*:nth-child(4){animation-delay:.16s}.stg>*:nth-child(5){animation-delay:.4s}.stg>*:nth-child(6){animation-delay:.55s}.stg>*:nth-child(7){animation-delay:.7s}.stg>*:nth-child(n+8){animation-delay:.8s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+button{font-family:inherit}
+</style>
+</helmet>
+<div class="stg" style="width: 390px; min-height: 1240px; box-sizing: border-box; background: #FFFFFF; padding: 52px 20px 34px; display: flex; flex-direction: column">
+  <div style="display: flex; align-items: center; gap: 8px">
+    <a href="Trips.dc.html" aria-label="Close" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em; color: #264E43">Plan a trip</h1>
+  </div>
+
+  <div style="margin-top: 14px; display: flex; gap: 10px">
+    <button onClick="{{toggleWhere}}" aria-expanded="{{whereAria}}" style="flex-grow: 1; flex-basis: 0; min-width: 0; display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 12px 0 14px; border-radius: 14px; border: {{whereBd}}; background: {{whereBg}}; text-align: left; cursor: pointer">
+      <dc-import name="Flag" code="{{cCode}}" w="26" h="18" hint-size="26px,18px"></dc-import>
+      <span style="min-width: 0"><span style="display: block; font-size: 11px; color: #5E6D67">Where</span><span style="display: block; font-size: 15px; font-weight: 600; color: #1C2B26; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{cName}}</span></span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: auto; flex-shrink: 0; transform: rotate({{chevRot}}); transition: transform .2s"><path d="M6 9l6 6 6-6"></path></svg>
+    </button>
+    <button onClick="{{showCal}}" style="flex-grow: 1; flex-basis: 0; display: flex; align-items: center; height: 60px; padding: 0 14px; border-radius: 14px; border: {{whenBd}}; background: {{whenBg}}; text-align: left; cursor: pointer"><span><span style="display: block; font-size: 11px; color: #264E43">When · {{nDays}}</span><span style="display: block; font-size: 15px; font-weight: 600; color: #264E43">{{whenLabel}}</span></span></button>
+  </div>
+
+  <sc-if value="{{whereOpen}}" hint-placeholder-val="{{false}}">
+    <div style="flex-shrink: 0; margin-top: 10px; border-radius: 18px; border: 1px solid #E3DED2; box-shadow: 0 10px 30px -14px rgba(28,43,38,.25); overflow: hidden">
+      <div style="padding: 10px; border-bottom: 1px solid #EEF1EF">
+        <div style="display: flex; align-items: center; gap: 8px; height: 42px; padding: 0 12px; border-radius: 12px; background: #F5F1E8">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6D67" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></svg>
+          <input value="{{q}}" onInput="{{search}}" placeholder="Search 233 countries" aria-label="Search countries" style="flex-grow: 1; border: none; outline: none; background: transparent; font: inherit; font-size: 14px; color: #1C2B26">
+        </div>
+      </div>
+      <div style="max-height: 300px; overflow-y: auto">
+        <sc-if value="{{showRecent}}" hint-placeholder-val="{{true}}"><div style="padding: 10px 14px 4px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #7A8983">YOUR COUNTRIES</div></sc-if>
+        <sc-for list="{{recent}}" as="c" hint-placeholder-count="5">
+          <button onClick="{{c.pick}}" style="width: 100%; display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border: none; background: {{c.bg}}; cursor: pointer; text-align: left; font-size: 14.5px; color: #1C2B26"><span style="width: 24px; height: 17px; display: flex; flex-shrink: 0"><dc-import name="Flag" code="{{c.code}}" w="24" h="17" hint-size="24px,17px"></dc-import></span><span style="flex-grow: 1">{{c.name}}</span><span style="font-size: 12px; color: #5E6D67">{{c.note}}</span></button>
+        </sc-for>
+        <div style="padding: 12px 14px 4px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #7A8983">{{allLabel}}</div>
+        <sc-for list="{{all}}" as="c" hint-placeholder-count="8">
+          <button onClick="{{c.pick}}" style="width: 100%; display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px; border: none; background: {{c.bg}}; cursor: pointer; text-align: left; font-size: 14.5px; color: #1C2B26"><span style="width: 24px; height: 17px; flex-shrink: 0; border-radius: 3px; background: #EEF1EF; display: flex; overflow: hidden"><sc-if value="{{c.hasFlag}}" hint-placeholder-val="{{true}}"><dc-import name="Flag" code="{{c.code}}" w="24" h="17" hint-size="24px,17px"></dc-import></sc-if></span><span style="flex-grow: 1">{{c.name}}</span></button>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="flex-shrink: 0; margin-top: 12px; padding: 12px; border-radius: 18px; border: 1px solid #E3DED2">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <button onClick="{{prevM}}" aria-label="Previous month" style="width: 32px; height: 32px; border: none; background: none; cursor: pointer; opacity: {{prevOp}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></button>
+      <span style="font-size: 14px; font-weight: 600; color: #264E43">{{monthLabel}}</span>
+      <button onClick="{{nextM}}" aria-label="Next month" style="width: 32px; height: 32px; border: none; background: none; cursor: pointer; opacity: {{nextOp}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></button>
+    </div>
+    <div style="margin-top: 6px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 3px; font-size: 13px; text-align: center">
+      <span style="font-size: 11px; color: #7A8983">M</span><span style="font-size: 11px; color: #7A8983">T</span><span style="font-size: 11px; color: #7A8983">W</span><span style="font-size: 11px; color: #7A8983">T</span><span style="font-size: 11px; color: #7A8983">F</span><span style="font-size: 11px; color: #7A8983">S</span><span style="font-size: 11px; color: #7A8983">S</span>
+      <sc-for list="{{days}}" as="d" hint-placeholder-count="35">
+        <button onClick="{{d.pick}}" aria-label="{{d.label}}" style="height: 32px; padding: 0; border: none; display: flex; align-items: center; justify-content: center; background: {{d.bg}}; color: {{d.fg}}; border-radius: {{d.r}}; font-family: inherit; font-size: 13px; font-weight: {{d.fw}}; opacity: {{d.op}}; cursor: {{d.cur}}">{{d.n}}</button>
+      </sc-for>
+    </div>
+    <div style="margin-top: 8px; font-size: 12px; color: #5E6D67; text-align: center">{{hint}}</div>
+  </div>
+
+  <div style="margin-top: 18px; font-size: 14px; font-weight: 600; color: #264E43">What is the trip for?</div>
+  <div role="radiogroup" aria-label="Trip type" style="margin-top: 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+    <sc-for list="{{kinds}}" as="k" hint-placeholder-count="3">
+      <button role="radio" aria-checked="{{k.aria}}" onClick="{{k.pick}}" style="height: 46px; border-radius: 14px; border: 1px solid {{k.bd}}; background: {{k.bg}}; color: {{k.fg}}; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{k.icon}}"></path></svg>{{k.label}}</button>
+    </sc-for>
+  </div>
+  <div style="margin-top: 6px; font-size: 12px; color: #5E6D67">Working days can count differently for tax and visa rules.</div>
+
+  <div style="margin-top: 16px; display: flex; align-items: baseline; gap: 6px"><span style="font-size: 14px; font-weight: 600; color: #264E43">Documents</span><span style="font-size: 12px; color: #7A8983">optional</span></div>
+  <div style="margin-top: 2px; font-size: 12px; color: #5E6D67">Boarding passes, bookings or a work letter, as proof.</div>
+  <sc-for list="{{files}}" as="f" hint-placeholder-count="1">
+    <div style="margin-top: 8px; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 8px 0 14px; border-radius: 12px; background: #F5F1E8">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg>
+      <span style="flex-grow: 1; font-size: 13.5px; font-weight: 500">{{f.name}}</span>
+      <span style="font-size: 12px; color: #7A8983">{{f.size}}</span>
+      <button onClick="{{f.remove}}" aria-label="Remove {{f.name}}" style="width: 32px; height: 32px; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E6D67" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+  </sc-for>
+  <button onClick="{{addFile}}" style="margin-top: 8px; height: 46px; border-radius: 12px; border: 1.5px dashed #9CB9AF; background: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; color: #264E43; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>Upload a photo or file</button>
+
+  <h2 style="margin: 22px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 18px; color: #264E43">What this trip does</h2>
+
+  <div style="margin-top: 10px; padding: 16px; border-radius: 18px; border: 1px solid #E3DED2">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <dc-import name="Flag" code="eu" w="26" h="18" hint-size="26px,18px"></dc-import>
+      <span style="flex-grow: 1; font-weight: 600; font-size: 15px">Schengen area</span>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; color: #264E43"><span style="font-weight: 300; color: #5E6D67">55 →</span> <b style="font-weight: 600">62</b><span style="font-family: 'Inter', sans-serif; font-size: 11px; color: #5E6D67"> of 90</span></span>
+    </div>
+    <div style="margin: 10px 0 0 38px; height: 6px; border-radius: 3px; background: #F5F1E8; position: relative; overflow: hidden"><span style="position: absolute; left: 0; top: 0; height: 6px; width: 61%; background: #C98A1B; opacity: 0.45"></span><span style="position: absolute; left: 0; top: 0; height: 6px; width: 69%; background: #C98A1B; border-radius: 3px; animation: extend 1.6s ease-in-out .9s both"></span></div>
+    <div style="margin: 8px 0 0 38px; display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #8A5D0F"><span style="width: 5px; height: 5px; border-radius: 3px; background: #C98A1B"></span>Watch · 28 days left on 24 Oct</div>
+    <p style="margin: 8px 0 0 38px; font-size: 12.5px; line-height: 1.5; color: #4F6159">+15 days in Spain, but your 8 days in Italy in April drop out of the 180-day window. We'll send a heads-up when 30 days are left.</p>
+  </div>
+
+  <div style="margin-top: 10px; padding: 16px; border-radius: 18px; border: 1px solid #E3DED2">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <dc-import name="Flag" code="ae" w="26" h="18" hint-size="26px,18px"></dc-import>
+      <span style="flex-grow: 1; font-weight: 600; font-size: 15px">UAE · 183 days</span>
+      <span style="font-size: 13px; font-weight: 600; color: #264E43">2 Nov</span>
+    </div>
+    <p style="margin: 8px 0 0 38px; font-size: 12.5px; line-height: 1.5; color: #4F6159">You'd reach 183 on 2 Nov instead of 20 Oct. Your flight days count in both countries.</p>
+  </div>
+
+  <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; background: #F5F1E8; font-size: 12.5px; color: #3D5048">
+    <span style="display: flex; gap: 4px"><dc-import name="Flag" code="uk" w="18" h="13" hint-size="18px,13px"></dc-import><dc-import name="Flag" code="us" w="18" h="13" hint-size="18px,13px"></dc-import></span>
+    UK and US: no change
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <a href="Trips.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 16px; background: #264E43; color: #FFFFFF; font-weight: 600; font-size: 16px">Save trip</a>
+  <button style="margin-top: 6px; height: 46px; border: none; background: none; font-size: 15px; font-weight: 500; color: #264E43; cursor: pointer">Try other dates</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { kind: 1, files: [['Iberia booking MAD.pdf', '240 KB']], c: 'es', open: false, q: '', m: 9, start: 282, end: 296 }; }
+  renderVals() {
+    const S = this.state;
+    const MD = [31,28,31,30,31,30,31,31,30,31,30,31], MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const off = (m) => MD.slice(0, m).reduce((a, b) => a + b, 0);
+    const TODAY = 277; // 5 Oct 2026, day-of-year index
+    const fmt = (doy) => { let m = 0; while (doy >= off(m + 1)) m++; return (doy - off(m) + 1) + ' ' + MN[m].slice(0, 3); };
+    // countries
+    const FLAGS = ['ae','eu','uk','us','es','fr','it','ru','pt','de','af','al','dz','ad','ao','ar','am','au','at','az','bs','bh','bd','be','br'];
+    const ALL = [['af','Afghanistan'],['al','Albania'],['dz','Algeria'],['ad','Andorra'],['ao','Angola'],['ar','Argentina'],['am','Armenia'],['au','Australia'],['at','Austria'],['az','Azerbaijan'],['bs','Bahamas'],['bh','Bahrain'],['bd','Bangladesh'],['be','Belgium'],['br','Brazil'],['bg','Bulgaria'],['ca','Canada'],['cn','China'],['hr','Croatia'],['cy','Cyprus'],['cz','Czechia'],['dk','Denmark'],['eg','Egypt'],['ee','Estonia'],['fi','Finland'],['fr','France'],['ge','Georgia'],['de','Germany'],['gr','Greece'],['hk','Hong Kong'],['hu','Hungary'],['is','Iceland'],['in','India'],['id','Indonesia'],['ie','Ireland'],['it','Italy'],['jp','Japan'],['jo','Jordan'],['ke','Kenya'],['kw','Kuwait'],['lb','Lebanon'],['my','Malaysia'],['mv','Maldives'],['mt','Malta'],['mx','Mexico'],['ma','Morocco'],['nl','Netherlands'],['nz','New Zealand'],['no','Norway'],['om','Oman'],['pk','Pakistan'],['ps','Palestine'],['ph','Philippines'],['pl','Poland'],['pt','Portugal'],['qa','Qatar'],['ro','Romania'],['sa','Saudi Arabia'],['sg','Singapore'],['za','South Africa'],['kr','South Korea'],['es','Spain'],['lk','Sri Lanka'],['se','Sweden'],['ch','Switzerland'],['th','Thailand'],['tr','Türkiye'],['ae','United Arab Emirates'],['uk','United Kingdom'],['us','United States'],['vn','Vietnam']];
+    const NAME = Object.fromEntries(ALL);
+    const pick = (code) => () => this.setState({ c: code, open: false, q: '' });
+    const q = S.q.trim().toLowerCase();
+    const recentCodes = [['es','35 days'],['uk','41 days'],['fr','11 days'],['it','9 days'],['us','14 days']];
+    const recent = q ? [] : recentCodes.map(([code, note]) => ({ code, name: NAME[code], note, pick: pick(code), bg: code === S.c ? '#EEF6FF' : '#FFFFFF' }));
+    const all = ALL.filter(([, n]) => !q || n.toLowerCase().includes(q)).map(([code, name]) => ({ code, name, hasFlag: FLAGS.includes(code), pick: pick(code), bg: code === S.c ? '#EEF6FF' : '#FFFFFF' }));
+    // calendar
+    const m = S.m, o = off(m), lead = (4 + o + 6) % 7;
+    const lo = S.start, hi = S.end == null ? S.start : S.end;
+    const days = [];
+    for (let i = 0; i < lead; i++) days.push({ n: '', bg: 'transparent', fg: '#1C2B26', r: '0', fw: '400', op: '1', cur: 'default', label: '', pick: () => {} });
+    for (let d = 1; d <= MD[m]; d++) {
+      const doy = o + d - 1, past = doy < TODAY;
+      const inR = lo != null && doy >= lo && doy <= hi, isS = doy === lo, isE = doy === hi;
+      const dow = (lead + d - 1) % 7;
+      const lr = isS || dow === 0 || d === 1, rr = isE || dow === 6 || d === MD[m];
+      days.push({ n: d, label: d + ' ' + MN[m], cur: past ? 'default' : 'pointer', op: past ? '0.3' : '1',
+        bg: isS || isE ? '#264E43' : (inR ? '#CFE8FF' : 'transparent'), fg: isS || isE ? '#FFFFFF' : (inR ? '#264E43' : '#1C2B26'), fw: inR ? '600' : '400',
+        r: inR ? `${lr ? 16 : 0}px ${rr ? 16 : 0}px ${rr ? 16 : 0}px ${lr ? 16 : 0}px` : '16px',
+        pick: () => { if (past) return; if (S.start == null || S.end != null) this.setState({ start: doy, end: null }); else if (doy < S.start) this.setState({ start: doy }); else this.setState({ end: doy }); } });
+    }
+    const n = S.end == null ? 1 : S.end - S.start + 1;
+    const whenLabel = S.start == null ? 'Pick dates' : (S.end == null ? fmt(S.start) + ' – ?' : fmt(S.start) + ' – ' + fmt(S.end));
+    const I = { Work: 'M4 8h16v11H4zM9 8V6h6v2', Pleasure: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v2M12 20v2M2 12h2M20 12h2', Both: 'M4 9h11v9H4zM15 12h5v6h-5' };
+    const kinds = ['Work', 'Pleasure', 'Both'].map((label, i) => { const on = this.state.kind === i; return { label, icon: I[label], aria: on ? 'true' : 'false', bg: on ? '#264E43' : '#FFFFFF', fg: on ? '#FFFFFF' : '#264E43', bd: on ? '#264E43' : '#E3DED2', pick: () => this.setState({ kind: i }) }; });
+    const files = this.state.files.map(([name, size], i) => ({ name, size, remove: () => this.setState({ files: this.state.files.filter((_, j) => j !== i) }) }));
+    const addFile = () => this.setState({ files: [...this.state.files, ['Hotel booking Madrid.jpg', '1.1 MB']].slice(0, 3) });
+    return { days, kinds, files, addFile, recent, all, q: S.q, showRecent: !q,
+      allLabel: q ? (all.length + ' MATCHING') : 'ALL COUNTRIES · A–Z', cCode: S.c, cName: NAME[S.c],
+      whereOpen: S.open, whereAria: S.open ? 'true' : 'false', chevRot: S.open ? '180deg' : '0deg',
+      whereBd: S.open ? '1.5px solid #264E43' : '1px solid #E3DED2', whereBg: S.open ? '#EEF6FF' : '#FFFFFF',
+      whenBd: S.open ? '1px solid #E3DED2' : '1.5px solid #264E43', whenBg: S.open ? '#FFFFFF' : '#EEF6FF',
+      toggleWhere: () => this.setState({ open: !S.open }), showCal: () => this.setState({ open: false }),
+      search: (e) => this.setState({ q: e.target.value }),
+      monthLabel: MN[m] + ' 2026', prevOp: m > 9 ? '1' : '0.3', nextOp: m < 11 ? '1' : '0.3',
+      prevM: () => { if (m > 9) this.setState({ m: m - 1 }); }, nextM: () => { if (m < 11) this.setState({ m: m + 1 }); },
+      whenLabel, nDays: S.end == null ? 'pick an end date' : n + (n === 1 ? ' day' : ' days'),
+      hint: S.end == null ? 'Now tap the day you fly back' : 'Tap a day to start new dates' };
+  }
+}
+</script>
+</body>
+</html>

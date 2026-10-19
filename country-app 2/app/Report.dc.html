@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.06s}.stg>*:nth-child(3){animation-delay:.12s}.stg>*:nth-child(4){animation-delay:.18s}.stg>*:nth-child(5){animation-delay:.24s}.stg>*:nth-child(6){animation-delay:.3s}.stg>*:nth-child(n+7){animation-delay:.36s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+  <div class="stg" style="flex-grow: 1; padding: 54px 24px 16px; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; color: #264E43">Report</h1>
+      <span style="height: 26px; padding: 0 10px; border-radius: 13px; background: #E4F1FE; display: flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #264E43">PREMIUM</span>
+    </div>
+
+    <div style="margin-top: 16px; font-size: 13px; font-weight: 600; color: #264E43">Period</div>
+    <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{periods}}" as="p" hint-placeholder-count="4">
+        <button onClick="{{p.pick}}" style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1.5px solid {{p.bd}}; background: {{p.bg}}; font-size: 13px; font-weight: 600; color: {{p.fg}}; cursor: pointer">{{p.label}}</button>
+      </sc-for>
+    </div>
+    <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; border-radius: 14px; background: #F5F1E8; font-size: 14px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 9.5h16M8.5 3v4M15.5 3v4"></path></svg>
+      <span style="flex-grow: 1; font-weight: 500">{{range}}</span><span style="font-size: 12px; color: #5E6D67">{{count}}</span>
+    </div>
+
+    <div style="margin-top: 18px; display: flex; gap: 16px; align-items: center">
+      <div style="width: 118px; height: 166px; border-radius: 8px; border: 1px solid #E3DED2; overflow: hidden; flex-shrink: 0; display: flex; flex-direction: column">
+        <div style="background: #264E43; padding: 10px 9px; height: 46px; box-sizing: border-box"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; color: #CFE8FF"><b style="font-weight: 800">count</b><span style="font-weight: 300; color: #6D9488">ry</span></span></div>
+        <div style="padding: 8px 9px; display: flex; gap: 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 15px; color: #264E43"><span>158</span><span>55</span><span>41</span></div>
+        <div style="margin: 0 9px; display: flex; height: 12px"><span style="flex-grow: 20; background: #264E43"></span><span style="flex-grow: 14; background: #B9A77E"></span><span style="flex-grow: 45; background: #264E43"></span><span style="flex-grow: 24; background: #7FAFD9"></span><span style="flex-grow: 20; background: #6D9488"></span><span style="flex-grow: 39; background: #264E43"></span><span style="flex-grow: 25; background: #6D9488"></span><span style="flex-grow: 25; background: #264E43"></span><span style="flex-grow: 20; background: #6D9488"></span><span style="flex-grow: 36; background: #264E43"></span><span style="flex-grow: 97; background: #EDEAE1"></span></div>
+        <div style="margin: 10px 9px 0; display: flex; flex-direction: column; gap: 5px"><span style="height: 3px; background: #EDEAE1"></span><span style="height: 3px; background: #EDEAE1"></span><span style="height: 3px; width: 70%; background: #EDEAE1"></span><span style="height: 3px; background: #EDEAE1"></span><span style="height: 3px; width: 80%; background: #EDEAE1"></span></div>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{inc}}" as="i" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+            <span style="font-size: 13.5px">{{i.label}}</span>
+            <button role="switch" aria-checked="{{i.aria}}" aria-label="{{i.label}}" onClick="{{i.toggle}}" style="width: 44px; height: 26px; border-radius: 13px; border: none; background: {{i.bg}}; position: relative; cursor: pointer; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{i.x}}; width: 20px; height: 20px; border-radius: 10px; background: #FFFFFF"></span></button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex-grow: 1"></div>
+    <a href="ReportPDF.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 56px; border-radius: 16px; background: #264E43; color: #FFFFFF; font-weight: 600; font-size: 16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Export PDF</a>
+    <button style="margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 16px; border: 1.5px solid #264E43; background: #FFFFFF; color: #264E43; font-weight: 600; font-size: 15px; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"></rect><path d="M4 7l8 6 8-6"></path></svg>Email to my advisor</button>
+    <p style="margin: 10px 0 0; text-align: center; font-size: 11.5px; line-height: 1.45; color: #5E6D67">A record of your days, not tax advice.</p>
+  </div>
+  <dc-import name="TabBar" active="report" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { period: 0, off: {} }; }
+  renderVals() {
+    const P = [
+      { label: 'Tax year 2026', range: '1 Jan – 25 Sep 2026', count: '268 days' },
+      { label: 'UK 2026/27', range: '6 Apr – 25 Sep 2026', count: '173 days' },
+      { label: 'Last 12 months', range: '26 Sep 2025 – 25 Sep 2026', count: '365 days' },
+      { label: 'Custom', range: 'Pick your dates', count: '' }
+    ];
+    const periods = P.map((p, i) => {
+      const on = this.state.period === i;
+      return { label: p.label, bd: on ? '#264E43' : '#E3DED2', bg: on ? '#EEF6FF' : '#FFFFFF', fg: on ? '#264E43' : '#3D5048', pick: () => this.setState({ period: i }) };
+    });
+    const cur = P[this.state.period];
+    const inc = ['All 4 countries', 'Trip log', 'Day-by-day proof', 'Edits and notes'].map((label) => {
+      const on = !this.state.off[label];
+      return { label, aria: on ? 'true' : 'false', bg: on ? '#264E43' : '#D9D4C8', x: on ? '21px' : '3px', toggle: () => this.setState({ off: { ...this.state.off, [label]: on } }) };
+    });
+    return { periods, range: cur.range, count: cur.count, inc };
+  }
+}
+</script>
+</body>
+</html>

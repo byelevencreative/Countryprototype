@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All partners</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes ring{from{stroke-dashoffset:326.7}}
+@keyframes dot{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.06s}.stg>*:nth-child(3){animation-delay:.12s}.stg>*:nth-child(4){animation-delay:.2s}.stg>*:nth-child(5){animation-delay:.28s}.stg>*:nth-child(6){animation-delay:.34s}.stg>*:nth-child(n+7){animation-delay:.4s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1120px; box-sizing: border-box; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column">
+  <div class="stg" style="flex-grow: 1; padding: 54px 20px 24px; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: center; gap: 8px"><a href="Partners.dc.html" aria-label="Back to partners" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a><h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #264E43">All partners</h1></div>
+    <div style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+      <span style="font-size: 13.5px; color: #4F6159">{{count}}</span>
+      <span style="display: flex; gap: 6px">
+        <sc-if value="{{filtered}}" hint-placeholder-val="{{false}}">
+          <button onClick="{{clear}}" aria-label="Clear filter" style="height: 38px; padding: 0 10px 0 14px; border-radius: 19px; border: none; background: #EEF6FF; color: #264E43; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px">{{catLabel}}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        </sc-if>
+        <button onClick="{{openSheet}}" style="height: 38px; padding: 0 14px 0 12px; border-radius: 19px; border: 1.5px solid {{fBd}}; background: #FFFFFF; color: #264E43; font-size: 13.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"></path></svg>Filter</button>
+      </span>
+    </div>
+
+    <div style="margin-top: 6px; display: flex; flex-direction: column">
+      <sc-for list="{{list}}" as="p" hint-placeholder-count="6">
+        <a href="PartnerDetail.dc.html#{{p.id}}" style="display: flex; align-items: center; gap: 14px; min-height: 88px; border-bottom: 1px solid #EFEBE2; color: #1C2B26">
+          <span style="position: relative; width: 64px; height: 64px; border-radius: 16px; background: {{p.photo}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-opacity="0.55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.5"></rect><circle cx="9" cy="10" r="1.6"></circle><path d="M20.5 15l-4.5-4-7.5 8"></path></svg>
+            <span style="position: absolute; right: -6px; bottom: -6px; width: 28px; height: 28px; border-radius: 9px; border: 2px solid #FFFFFF; background: {{p.bg}}; color: {{p.fg}}; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 11px">{{p.mono}}</span>
+          </span>
+          <span style="flex-grow: 1"><span style="display: block; font-weight: 600; font-size: 15px">{{p.name}}</span><span style="display: block; margin-top: 2px; font-size: 12.5px; color: #5E6D67">{{p.what}}</span></span>
+          <span style="padding: 5px 10px; border-radius: 10px; background: #F5F1E8; font-size: 12px; font-weight: 600; color: #264E43; white-space: nowrap">{{p.offer}}</span>
+        </a>
+      </sc-for>
+    </div>
+
+    <p style="margin: 18px 0 0; font-size: 12px; line-height: 1.5; color: #5E6D67">Some offers are paid partnerships. country never shares your days or location with partners.</p>
+  </div>
+  <dc-import name="TabBar" active="partners" hint-size="390px,84px"></dc-import>
+  <sc-if value="{{open}}" hint-placeholder-val="{{false}}">
+    <div style="position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; justify-content: flex-end">
+      <button onClick="{{closeSheet}}" aria-label="Close filter" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(28,43,38,.38); cursor: pointer; animation: fade .2s ease-out both"></button>
+      <div role="dialog" aria-label="Filter partners" style="position: relative; padding: 10px 20px 28px; border-radius: 26px 26px 0 0; background: #FFFFFF; animation: up .28s cubic-bezier(.2,.8,.2,1) both">
+        <div style="width: 40px; height: 5px; margin: 0 auto; border-radius: 3px; background: #E3DED2"></div>
+        <div style="margin-top: 14px; display: flex; align-items: baseline; justify-content: space-between">
+          <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; color: #264E43">Filter</span>
+          <button onClick="{{clear}}" style="border: none; background: none; padding: 0; font-size: 13.5px; font-weight: 600; color: #264E43; cursor: pointer">Reset</button>
+        </div>
+        <div style="margin-top: 4px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #7A8983">CATEGORY</div>
+        <div style="margin-top: 8px; display: flex; flex-direction: column">
+          <sc-for list="{{opts}}" as="o" hint-placeholder-count="9">
+            <button onClick="{{o.pick}}" role="radio" aria-checked="{{o.aria}}" style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 4px; border: none; border-bottom: 1px solid #EFEBE2; background: none; cursor: pointer; text-align: left">
+              <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 10px; background: {{o.tint}}; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{o.icon}}"></path></svg></span>
+              <span style="flex-grow: 1; font-size: 15px; font-weight: {{o.fw}}; color: #1C2B26">{{o.label}}</span>
+              <span style="font-size: 12.5px; color: #7A8983">{{o.n}}</span>
+              <span style="width: 22px; height: 22px; flex-shrink: 0; border-radius: 11px; border: {{o.ring}}; box-sizing: border-box; background: {{o.dot}}"></span>
+            </button>
+          </sc-for>
+        </div>
+        <button onClick="{{closeSheet}}" style="margin-top: 16px; width: 100%; height: 52px; border-radius: 16px; border: none; background: #264E43; color: #FFFFFF; font-size: 15.5px; font-weight: 600; cursor: pointer">{{showLabel}}</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); let h = ''; try { h = decodeURIComponent((window.location.hash || '').slice(1)); } catch (e) {} const M = { connectivity: 'Connectivity', insurance: 'Insurance', money: 'Money', travel: 'Travel', stay: 'Stay', lifestyle: 'Lifestyle', tax: 'Tax & Legal', business: 'Business' }; this.state = { cat: M[h] || 'All', open: false }; }
+  renderVals() {
+    const C = ['All', 'Connectivity', 'Insurance', 'Money', 'Travel', 'Stay', 'Lifestyle', 'Tax & Legal', 'Business'];
+    const P = [
+      { id: 'holafly', cat: 'Connectivity', mono: 'H', name: 'Holafly', what: 'Travel eSIMs, no roaming bills', offer: '[X]% off', bg: '#E4F1FE', fg: '#264E43' },
+      { id: 'destino', cat: 'Business', mono: 'DD', name: 'Destino Dubai', what: 'UAE company and residency setup', offer: '[OFFER]', bg: '#264E43', fg: '#CFE8FF' },
+      { id: 'insurance', cat: 'Insurance', mono: 'I', name: '[Insurance partner]', what: 'Health cover for people on the move', offer: '[OFFER]', bg: '#E4F1FE', fg: '#264E43' },
+      { id: 'tax', cat: 'Tax & Legal', mono: 'T', name: '[Tax advisor partner]', what: 'Cross-border tax and residency advice', offer: '[OFFER]', bg: '#6D9488', fg: '#FFFFFF' },
+      { id: 'money', cat: 'Money', mono: 'M', name: '[Money partner]', what: 'Multi-currency account and cards', offer: '[OFFER]', bg: '#F5F1E8', fg: '#264E43' },
+      { id: 'stay', cat: 'Stay', mono: 'S', name: '[Coliving partner]', what: 'Monthly stays and coworking', offer: '[OFFER]', bg: '#F5F1E8', fg: '#264E43' },
+      { id: 'travel', cat: 'Travel', mono: 'T', name: '[Travel partner]', what: 'Flights, lounges and airport transfers', offer: '[OFFER]', bg: '#DCEBF8', fg: '#264E43' },
+      { id: 'lifestyle', cat: 'Lifestyle', mono: 'L', name: '[Lifestyle partner]', what: 'Gyms, wellness and coworking passes', offer: '[OFFER]', bg: '#F3DCD6', fg: '#264E43' },
+      { id: 'business', cat: 'Business', mono: 'B', name: '[Business setup partner]', what: 'Company formation in [COUNTRY]', offer: '[OFFER]', bg: '#F5F1E8', fg: '#264E43' }
+    ];
+    const tints = ['#CFE8FF', '#E7DCC6', '#DCEBF8', '#D8E6DF', '#E3E9D6', '#F1E4D0', '#DCEBF8', '#F3DCD6', '#E7DCC6'];
+    P.forEach((p, i) => { p.photo = tints[i]; });
+    const list = this.state.cat === 'All' ? P : P.filter((p) => p.cat === this.state.cat);
+    const n = list.length;
+    const I = { All: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', Connectivity: 'M5 18v-2M9 18v-5M13 18v-8M17 18V6', Insurance: 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z', Money: 'M3 6h18v12H3zM3 10h18M7 15h4', Travel: 'M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z', Stay: 'M3 19v-8h18v8M3 15h18M6 11V8h5v3', Lifestyle: 'M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3', 'Tax & Legal': 'M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6', Business: 'M4 8h16v11H4zM9 8V6h6v2M4 13h16' };
+    const TINT = { All: '#EEF1EF', Connectivity: '#E4F1FE', Insurance: '#F5F1E8', Money: '#E3E9D6', Travel: '#DCEBF8', Stay: '#F1E4D0', Lifestyle: '#F3DCD6', 'Tax & Legal': '#D8E6DF', Business: '#EAE3F3' };
+    const cnt = (c) => c === 'All' ? P.length : P.filter((p) => p.cat === c).length;
+    const opts = C.map((label) => { const on = this.state.cat === label; return { label, icon: I[label], tint: TINT[label], n: String(cnt(label)), aria: on ? 'true' : 'false', fw: on ? '700' : '500', ring: on ? '7px solid #264E43' : '1.5px solid #C9D1CD', dot: '#FFFFFF', pick: () => this.setState({ cat: label }) }; });
+    const filtered = this.state.cat !== 'All';
+    return { list, opts, filtered, open: this.state.open, catLabel: this.state.cat, fBd: filtered ? '#264E43' : '#E3DED2',
+      count: n + (n === 1 ? ' partner' : ' partners'),
+      showLabel: 'Show ' + n + (n === 1 ? ' partner' : ' partners'),
+      openSheet: () => this.setState({ open: true }), closeSheet: () => this.setState({ open: false }), clear: () => this.setState({ cat: 'All' }) };
+  }
+}
+</script>
+</body>
+</html>

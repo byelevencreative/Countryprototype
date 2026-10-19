@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+button,input{font-family:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes live{0%,100%{box-shadow:0 0 0 0 rgba(38,78,67,.35)}60%{box-shadow:0 0 0 7px rgba(38,78,67,0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-.6deg)}75%{transform:rotate(.6deg)}}
+@keyframes toast{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.05s}.stg>*:nth-child(3){animation-delay:.1s}.stg>*:nth-child(4){animation-delay:.16s}.stg>*:nth-child(5){animation-delay:.22s}.stg>*:nth-child(n+6){animation-delay:.28s}
+.bar{transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) .5s both}
+.wig{animation:wiggle .35s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 960px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+  <div class="stg" style="flex-grow: 1; padding: 54px 20px 24px; display: flex; flex-direction: column; gap: 16px">
+
+    <div style="display: flex; align-items: flex-start; justify-content: space-between">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .14em; color: #5E6D67">MON 5 OCT</div>
+        <div style="margin-top: 4px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; letter-spacing: -0.02em; color: #264E43; white-space: nowrap">Good afternoon, Anna</div>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <a href="Alerts.dc.html" aria-label="Alerts, 1 new" style="position: relative; width: 42px; height: 42px; border-radius: 21px; border: 1px solid #E3DED2; display: flex; align-items: center; justify-content: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg><span style="position: absolute; top: 9px; right: 10px; width: 8px; height: 8px; border-radius: 4px; background: #264E43; border: 2px solid #FFFFFF"></span></a>
+        <a href="You.dc.html" aria-label="You and settings" style="width: 42px; height: 42px; border-radius: 21px; background: #264E43; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; color: #CFE8FF">A</a>
+      </div>
+    </div>
+
+    <a href="EditDay.dc.html" aria-label="You're in Dubai, counting today. Correct today" style="margin-top: -4px; align-self: flex-start; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px 0 12px; border-radius: 17px; background: #F5F1E8; font-size: 13px; color: #1C2B26">
+      <span style="width: 8px; height: 8px; border-radius: 4px; background: #264E43; animation: live 2s ease-out 1s infinite"></span>
+      <dc-import name="Flag" code="ae" w="18" h="13" hint-size="18px,13px"></dc-import>
+      <span>You're in <b style="font-weight: 600">Dubai</b> · counting today</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5E6D67" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+    </a>
+
+    <!-- Goal -->
+    <a href="Country.dc.html#ae" aria-label="Your goal: UAE tax residency, 158 of 183 days, 25 days to go" style="display: flex; align-items: center; gap: 18px; padding: 18px 16px 18px 18px; border-radius: 24px; background: #E4F1FE; color: #1C2B26">
+      <span style="position: relative; width: 108px; height: 108px; flex-shrink: 0">
+        <svg width="108" height="108" viewBox="0 0 108 108" fill="none" aria-hidden="true"><circle cx="54" cy="54" r="46" stroke="#FFFFFF" stroke-width="10"></circle><circle cx="54" cy="54" r="46" stroke="#264E43" stroke-width="10" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="{{off}}" transform="rotate(-90 54 54)"></circle></svg>
+        <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 34px; line-height: 1; color: #264E43; font-variant-numeric: tabular-nums">{{n}}</span><span style="margin-top: 2px; font-size: 11.5px; color: #5E6D67">of 183</span></span>
+      </span>
+      <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #5E6D67">YOUR GOAL</span>
+        <span style="margin-top: 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.05; letter-spacing: -0.02em; color: #264E43; white-space: nowrap">25 days to go</span>
+        <span style="margin-top: 6px; font-size: 12.5px; line-height: 1.4; color: #3D5048">UAE tax residency. On track for 2 Nov, after Madrid.</span>
+      </span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 5l7 7-7 7"></path></svg>
+    </a>
+
+    <!-- Rules -->
+    <div style="margin-top: 4px; display: flex; align-items: baseline; justify-content: space-between">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px; color: #264E43">Your rules</h2>
+      <button onClick="{{toggleEdit}}" style="border: none; background: none; padding: 0; font-size: 13.5px; font-weight: 600; color: #264E43; cursor: pointer">{{editLabel}}</button>
+    </div>
+    <div style="margin-top: -4px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <sc-for list="{{rules}}" as="r" hint-placeholder-count="3">
+        <div class="{{r.cls}}" style="position: relative">
+          <a href="{{r.href}}" style="display: flex; flex-direction: column; height: 100%; box-sizing: border-box; padding: 14px; border-radius: 20px; background: #F5F1E8; color: #1C2B26; pointer-events: {{r.pe}}">
+            <span style="display: flex; align-items: center; gap: 8px"><dc-import name="Flag" code="{{r.code}}" w="22" h="15" hint-size="22px,15px"></dc-import><span style="min-width: 0; font-size: 14px; font-weight: 700; color: #264E43; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span></span>
+            <span style="margin: 3px 0 0 30px; font-size: 11.5px; color: #5E6D67">{{r.sub}}</span>
+            <span style="margin-top: 12px; display: flex; align-items: baseline; gap: 5px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 28px; line-height: 1; color: #264E43; font-variant-numeric: tabular-nums">{{r.n}}</span><span style="font-size: 12px; color: #5E6D67">{{r.unit}}</span></span>
+            <span style="margin-top: 10px; display: block; height: 6px; border-radius: 3px; background: #FFFFFF; overflow: hidden; opacity: {{r.barOp}}"><span class="bar" style="display: block; width: {{r.pct}}%; height: 6px; border-radius: 3px; background: #264E43"></span></span>
+            <span style="margin-top: 10px; align-self: flex-start; padding: 3px 9px; border-radius: 999px; background: #FFFFFF; font-size: 11.5px; font-weight: 600; color: {{r.chipFg}}">{{r.status}}</span>
+          </a>
+          <sc-if value="{{editing}}" hint-placeholder-val="{{false}}">
+            <button onClick="{{r.remove}}" aria-label="Stop tracking {{r.name}}" style="position: absolute; top: -6px; right: -6px; width: 26px; height: 26px; border-radius: 13px; border: 2px solid #FFFFFF; background: #1C2B26; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+          </sc-if>
+        </div>
+      </sc-for>
+      <button onClick="{{openAdd}}" style="min-height: 150px; border-radius: 20px; border: 1.5px dashed #B9C9C2; background: #FFFFFF; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #264E43">
+        <span style="width: 38px; height: 38px; border-radius: 19px; background: #E4F1FE; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        <span style="font-size: 14px; font-weight: 600">Add a rule</span>
+      </button>
+    </div>
+
+    <!-- Coming up -->
+    <div style="margin-top: 4px; display: flex; align-items: baseline; justify-content: space-between">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px; color: #264E43">Coming up</h2>
+      <a href="TripsAll.dc.html#upcoming" style="font-size: 13px; font-weight: 600">All trips ›</a>
+    </div>
+    <a href="TripDetail.dc.html" style="margin-top: -4px; display: flex; align-items: center; gap: 14px; padding: 14px 16px 14px 14px; border-radius: 20px; border: 1px solid #E3DED2; color: #1C2B26">
+      <span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 14px; background: #E4F1FE; display: flex; align-items: center; justify-content: center"><dc-import name="Flag" code="es" w="24" h="17" hint-size="24px,17px"></dc-import></span>
+      <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700; color: #264E43">Madrid · 10 – 24 Oct</span><span style="font-size: 12.5px; color: #5E6D67">5 days to go · Schengen to 62 of 90</span></span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 5l7 7-7 7"></path></svg>
+    </a>
+  </div>
+
+  <!-- Add a rule sheet -->
+  <sc-if value="{{adding}}" hint-placeholder-val="{{false}}">
+    <div style="position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; justify-content: flex-end">
+      <button onClick="{{closeAdd}}" aria-label="Close" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(28,43,38,.38); cursor: pointer; animation: fade .2s ease-out both"></button>
+      <div role="dialog" aria-label="Add a rule" style="position: relative; padding: 10px 20px 28px; border-radius: 26px 26px 0 0; background: #FFFFFF; animation: up .28s cubic-bezier(.2,.8,.2,1) both">
+        <div style="width: 40px; height: 5px; margin: 0 auto; border-radius: 3px; background: #E3DED2"></div>
+        <div style="margin-top: 14px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; color: #264E43">Add a rule</div>
+        <div style="margin-top: 4px; font-size: 13px; color: #5E6D67">Every country's days are counted already. Pick what to keep on Today.</div>
+        <sc-if value="{{hasRules}}" hint-placeholder-val="{{true}}">
+        <div style="margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #7A8983">RULES WE TRACK</div>
+        <div style="margin-top: 2px; display: flex; flex-direction: column">
+          <sc-for list="{{suggestRules}}" as="s" hint-placeholder-count="2">
+            <button onClick="{{s.add}}" style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 2px; border: none; border-bottom: 1px solid #EFEBE2; background: none; cursor: pointer; text-align: left">
+              <dc-import name="Flag" code="{{s.code}}" w="26" h="18" hint-size="26px,18px"></dc-import>
+              <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; color: #1C2B26">{{s.name}}</span><span style="font-size: 12px; color: #5E6D67">{{s.sub}}</span></span>
+              <span style="height: 30px; padding: 0 12px; border-radius: 15px; background: {{s.btnBg}}; color: {{s.btnFg}}; font-size: 12.5px; font-weight: 600; display: flex; align-items: center">Add</span>
+            </button>
+          </sc-for>
+        </div>
+        </sc-if>
+        <div style="margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; color: #7A8983">JUST COUNT DAYS · ANY COUNTRY</div>
+        <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border-radius: 12px; background: #F5F1E8">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6D67" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4 4"></path></svg>
+          <input placeholder="Search any country" aria-label="Search any country" style="flex-grow: 1; border: none; outline: none; background: transparent; font-size: 14.5px; color: #1C2B26">
+        </div>
+        <div style="margin-top: 2px; display: flex; flex-direction: column">
+          <sc-for list="{{suggestDays}}" as="s" hint-placeholder-count="3">
+            <button onClick="{{s.add}}" style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 2px; border: none; border-bottom: 1px solid #EFEBE2; background: none; cursor: pointer; text-align: left">
+              <dc-import name="Flag" code="{{s.code}}" w="26" h="18" hint-size="26px,18px"></dc-import>
+              <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; color: #1C2B26">{{s.name}}</span><span style="font-size: 12px; color: #5E6D67">{{s.sub}}</span></span>
+              <span style="height: 30px; padding: 0 12px; border-radius: 15px; background: {{s.btnBg}}; color: {{s.btnFg}}; font-size: 12.5px; font-weight: 600; display: flex; align-items: center">Add</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="margin-top: 12px; font-size: 12px; line-height: 1.45; color: #7A8983; text-align: center">Rules for more countries are on the way. We'll tell you when yours arrives.</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+    <div role="status" style="position: fixed; z-index: 70; left: 50%; bottom: 104px; transform: translateX(-50%); padding: 11px 16px; border-radius: 14px; background: #1C2B26; color: #FFFFFF; font-size: 13.5px; font-weight: 500; white-space: nowrap; animation: toast .25s ease-out both">{{toastText}}</div>
+  </sc-if>
+  <dc-import name="TabBar" active="today" hint-size="390px,84px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":960}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { n: 0, editing: false, adding: false, toast: null, ids: ['eu', 'uk', 'th'] }; }
+  componentDidMount() {
+    const start = Date.now();
+    this.t = setInterval(() => {
+      const k = Math.min(1, (Date.now() - start) / 1200);
+      this.setState({ n: Math.round(158 * (1 - Math.pow(1 - k, 3))) });
+      if (k >= 1) clearInterval(this.t);
+    }, 30);
+  }
+  componentWillUnmount() { clearInterval(this.t); clearTimeout(this._t); }
+  renderVals() {
+    const S = this.state;
+    const R = {
+      eu: { code: 'eu', name: 'Schengen', sub: '90 in any 180', n: 55, of: 90, status: 'Safe · 35 left' },
+      uk: { code: 'uk', name: 'United Kingdom', sub: 'Tax · 2 ties', n: 24, of: 90, status: 'Safe · 66 left' },
+      th: { code: 'th', name: 'Thailand', sub: 'Tax · 180 a year', n: 12, of: 180, status: 'Safe · 168 left' },
+      aev: { code: 'ae', name: 'UAE visa', sub: 'Max 180 days away', n: 0, of: 180, status: 'You’re home', ruleSub: 'Residence visa · 180 days away max', href: 'ae' },
+      thv: { code: 'th', name: 'Thailand visa', sub: '30 days a visit', n: 0, of: 30, status: 'Not there now', ruleSub: 'Visa-free stay · 30 days a visit', href: 'th' },
+      es: { code: 'es', name: 'Spain', sub: 'Day count', n: 35, days: true },
+      it: { code: 'it', name: 'Italy', sub: 'Day count', n: 9, days: true },
+      fr: { code: 'fr', name: 'France', sub: 'Day count', n: 11, days: true }
+    };
+    R.eu.ruleSub = 'Schengen · 90 days in any 180'; R.uk.ruleSub = 'UK · Residence test, set by your ties'; R.th.ruleSub = 'Thailand · Tax, 180 days a year';
+    const say = (t) => { this.setState({ toast: t }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: null }), 2200); };
+    const rules = S.ids.map((id) => {
+      const r = R[id];
+      return { ...r, unit: r.days ? 'days this year' : 'of ' + r.of, pct: r.days ? 0 : Math.max(3, Math.round(r.n / r.of * 100)), barOp: r.days ? 0 : 1,
+        status: r.days ? 'Rules coming soon' : r.status, chipFg: r.days ? '#5E6D67' : '#2F7353',
+        href: 'Country.dc.html#' + (r.href || id),
+        cls: S.editing ? 'wig' : '', pe: S.editing ? 'none' : 'auto',
+        remove: () => { this.setState({ ids: S.ids.filter((x) => x !== id) }); say('Removed ' + r.name + ' from Today'); } };
+    });
+    const mk = (id, sub, dark) => ({ code: R[id].code, name: R[id].days ? R[id].name : R[id].name.replace(' visa', ''), sub, btnBg: dark ? '#264E43' : '#E4F1FE', btnFg: dark ? '#FFFFFF' : '#264E43',
+      add: () => { this.setState({ ids: [...S.ids, id], adding: false }); say(R[id].days ? 'Counting days in ' + R[id].name : 'Now tracking ' + R[id].name); } });
+    const suggestRules = ['eu', 'uk', 'th', 'aev', 'thv'].filter((id) => !S.ids.includes(id)).map((id) => mk(id, R[id].ruleSub, true));
+    const suggestDays = [['es', '35 days this year · Madrid on 10 Oct'], ['it', '9 days this year'], ['fr', '11 days this year']]
+      .filter(([id]) => !S.ids.includes(id)).map(([id, sub]) => mk(id, sub, false));
+    return {
+      n: S.n, off: (289 * (1 - S.n / 183)).toFixed(1), rules, suggestRules, suggestDays, hasRules: suggestRules.length > 0,
+      editing: S.editing, editLabel: S.editing ? 'Done' : 'Edit',
+      toggleEdit: () => this.setState({ editing: !S.editing }),
+      adding: S.adding, openAdd: () => this.setState({ adding: true, editing: false }), closeAdd: () => this.setState({ adding: false }),
+      toast: !!S.toast, toastText: S.toast || ''
+    };
+  }
+}
+</script>
+</body>
+</html>

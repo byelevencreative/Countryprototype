@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Country</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+button{font-family:inherit}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes thunk{0%{opacity:0;transform:scale(1.5) rotate(-4deg)}65%{opacity:1;transform:scale(.95) rotate(-4deg)}100%{opacity:1;transform:rotate(-4deg)}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.05s}.stg>*:nth-child(3){animation-delay:.1s}.stg>*:nth-child(4){animation-delay:.16s}.stg>*:nth-child(5){animation-delay:.22s}.stg>*:nth-child(n+6){animation-delay:.28s}
+.bar{transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) .5s both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div class="stg" style="width: 390px; height: 1900px; box-sizing: border-box; background: #FFFFFF; padding: 52px 20px 40px; display: flex; flex-direction: column; gap: 14px">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Countries.dc.html" onClick="{{back}}" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <a href="Planner.dc.html" style="height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid #E3DED2; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600">Plan a trip</a>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 12px">
+    <dc-import name="Flag" code="{{code}}" w="38" h="27" hint-size="38px,27px"></dc-import>
+    <div>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 25px; line-height: 1.1; letter-spacing: -0.02em; color: #264E43">{{name}}</h1>
+      <div style="margin-top: 3px; font-size: 12.5px; color: #5E6D67">{{sub}}</div>
+    </div>
+  </div>
+
+  <div style="padding: 18px; border-radius: 20px; border: 1px solid #E3DED2">
+    <div style="display: flex; align-items: baseline; gap: 8px">
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 52px; line-height: 1; color: #264E43">{{days}}</span>
+      <span style="font-size: 15px; font-weight: 600; color: #264E43">days in {{the}}</span>
+    </div>
+    <div style="margin-top: 4px; font-size: 13px; color: #5E6D67">In 2026. Any part of a day counts.</div>
+    <div style="margin-top: 16px; display: flex; height: 12px; border-radius: 6px; overflow: hidden; gap: 3px">
+      <span class="bar" style="flex-grow: {{work}}; background: #264E43"></span>
+      <span class="bar" style="flex-grow: {{pleasure}}; background: #9CC9EE; animation-delay: .7s"></span>
+    </div>
+    <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+      <div style="padding: 12px; border-radius: 14px; background: #F5F1E8">
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #264E43"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="2.5"></rect><path d="M9 7.5V5.5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5.5v2M3.5 12.5h17"></path></svg>Work</div>
+        <div style="margin-top: 6px; display: flex; align-items: baseline; gap: 5px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 26px; line-height: 1; color: #264E43">{{work}}</span><span style="font-size: 12.5px; color: #5E6D67">{{workSub}}</span></div>
+      </div>
+      <div style="padding: 12px; border-radius: 14px; background: #E4F1FE">
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #264E43"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg>Pleasure</div>
+        <div style="margin-top: 6px; display: flex; align-items: baseline; gap: 5px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 26px; line-height: 1; color: #264E43">{{pleasure}}</span><span style="font-size: 12.5px; color: #5E6D67">{{pleasureSub}}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{notTracking}}" hint-placeholder-val="{{false}}">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 12px; border-radius: 14px; border: 1px solid #E3DED2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6D67" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 8v4.5"></path><path d="M12 16v.01"></path></svg>
+      <span style="flex-grow: 1; font-size: 13.5px; line-height: 1.35; color: #3D5048">You're not tracking {{the}}. Track it?</span>
+      <button onClick="{{track}}" style="height: 32px; padding: 0 16px; border-radius: 16px; border: none; background: #264E43; color: #FFFFFF; font-size: 13px; font-weight: 600; cursor: pointer">Yes</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{tracking}}" hint-placeholder-val="{{true}}">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: #EEF6F2">
+        <span style="width: 22px; height: 22px; border-radius: 11px; background: #264E43; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span style="flex-grow: 1; font-size: 13.5px; font-weight: 500; color: #264E43">You're tracking {{theP}} rules</span>
+      </div>
+      <div style="padding: 18px; border-radius: 20px; background: #E4F1FE; animation: rise .45s ease-out both">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #264E43">FORECAST</div>
+        <div style="margin-top: 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.25; color: #264E43">{{fTitle}}</div>
+        <div style="margin-top: 14px; position: relative; height: 40px">
+          <span style="position: absolute; left: 0; right: 0; top: 14px; height: 8px; border-radius: 4px; background: #FFFFFF"></span>
+          <span class="bar" style="position: absolute; left: 0; top: 14px; height: 8px; width: {{fFill}}%; border-radius: 4px; background: #264E43"></span>
+          <span style="position: absolute; left: {{fFill}}%; top: 14px; height: 8px; width: {{fDash}}%; background: repeating-linear-gradient(90deg, #264E43 0 3px, transparent 3px 6px)"></span>
+          <sc-if value="{{fMark}}" hint-placeholder-val="{{true}}">
+            <span style="position: absolute; left: {{fMarkAt}}%; top: 2px; width: 2px; height: 30px; margin-left: -1px; background: #264E43"></span>
+            <span style="position: absolute; left: {{fMarkAt}}%; top: -12px; transform: translateX(-50%); font-size: 10px; font-weight: 600; color: #264E43">{{fMarkLabel}}</span>
+          </sc-if>
+          <span style="position: absolute; left: 0; top: 28px; font-size: 10px; color: #3D5048">{{fL}}</span>
+          <span style="position: absolute; left: {{fFill}}%; top: 28px; transform: translateX(-50%); font-size: 10px; font-weight: 600; color: #264E43">Today</span>
+          <span style="position: absolute; right: 0; top: 28px; font-size: 10px; color: #3D5048">{{fR}}</span>
+        </div>
+        <div style="margin-top: 10px; font-size: 13px; line-height: 1.45; color: #264E43">{{fNote}} <a href="Planner.dc.html" style="font-weight: 600; text-decoration: underline">See how a trip changes it</a></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="padding: 18px 18px 8px; border-radius: 20px; border: 1px solid #E3DED2">
+    <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; color: #264E43">{{tripsTitle}}</span><span style="font-size: 12px; color: #5E6D67">Newest first</span></div>
+    <div style="margin-top: 6px; display: flex; flex-direction: column">
+      <sc-for list="{{trips}}" as="t" hint-placeholder-count="3">
+        <a href="EditDay.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: {{t.bd}}; color: #1C2B26">
+          <span style="width: 44px; height: 48px; flex-shrink: 0; border-radius: 12px; background: #F5F1E8; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: #5E6D67">{{t.mon}}</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 19px; line-height: 1.1; color: #264E43">{{t.day}}</span></span>
+          <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+            <span style="font-size: 15px; font-weight: 500">{{t.dates}}</span>
+            <span style="font-size: 12px; color: #5E6D67">{{t.where}}</span>
+          </span>
+          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 5px">
+            <span style="padding: 3px 9px; border-radius: 999px; background: {{t.tagBg}}; font-size: 11.5px; font-weight: 600; color: {{t.tagFg}}">{{t.kind}}</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #4F6159">{{t.days}} days</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+    <div style="padding: 10px 0 8px; font-size: 12px; color: #5E6D67">Tap a trip to change its dates or switch work and pleasure.</div>
+  </div>
+
+  <div style="padding: 18px; border-radius: 20px; border: 1px solid #E3DED2">
+    <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; color: #264E43">Documents</span><span style="font-size: 12px; color: #5E6D67">{{docCount}}</span></div>
+    <div style="margin-top: 4px; font-size: 12.5px; line-height: 1.45; color: #5E6D67">{{docIntro}}</div>
+    <div style="margin-top: 10px; display: flex; flex-direction: column">
+      <sc-for list="{{docs}}" as="d" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: {{d.bd}}">
+          <span style="width: 38px; height: 44px; flex-shrink: 0; border-radius: 8px; background: {{d.bg}}; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 500; letter-spacing: 0.06em; color: {{d.fg}}">{{d.type}}</span>
+          <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+            <span style="font-size: 14px; font-weight: 500; color: #1C2B26; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.name}}</span>
+            <span style="font-size: 12px; color: #5E6D67">{{d.meta}}</span>
+          </span>
+          <button aria-label="More options" style="width: 32px; height: 32px; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#7A8983"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+        </div>
+      </sc-for>
+    </div>
+    <button style="margin-top: 12px; width: 100%; height: 72px; border-radius: 14px; border: 1.5px dashed #9CB9AF; background: #F7FAF9; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px">
+      <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #264E43"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>Upload a document</span>
+      <span style="font-size: 11.5px; color: #5E6D67">Photo, PDF or screenshot · we'll match it to a trip</span>
+    </button>
+  </div>
+
+  <a href="Passport.dc.html" style="display: flex; align-items: center; gap: 14px; padding: 14px 16px 14px 10px; border-radius: 20px; background: #F5F1E8; color: #1C2B26">
+    <span style="flex-shrink: 0; animation: thunk .45s ease-out .6s both"><dc-import name="Stamp" code="{{stampCode}}" w="120" hint-size="120px,80px"></dc-import></span>
+    <span style="flex-grow: 1"><span style="display: block; font-size: 15px; font-weight: 700; color: #264E43">Your {{short}} stamp</span><span style="display: block; margin-top: 2px; font-size: 12.5px; line-height: 1.35; color: #5E6D67">{{stampSub}}</span></span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 5l7 7-7 7"></path></svg>
+  </a>
+
+  <sc-if value="{{rulesLink}}" hint-placeholder-val="{{false}}">
+  <a href="CountryRules.dc.html" aria-label="How {{the}} counts" style="display: block; padding: 18px; border-radius: 20px; background: #E4F1FE; color: #1C2B26">
+    <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #264E43">{{rulesLabel}}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></div>
+    <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.55; color: #1C2B26">{{rules1}}</p>
+    <p style="margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: #3D5048">{{rules2}}</p>
+    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #C9DFF3; display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; color: #264E43">See the full overview<span style="font-size: 12px; font-weight: 500; color: #5E6D67">{{rulesSrc}}</span></div>
+  </a>
+  </sc-if>
+  <sc-if value="{{rulesPlain}}" hint-placeholder-val="{{true}}">
+  <div style=" padding: 18px; border-radius: 20px; background: #E4F1FE; color: #1C2B26">
+    <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #264E43">{{rulesLabel}}</span></div>
+    <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.55; color: #1C2B26">{{rules1}}</p>
+    <p style="margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: #3D5048">{{rules2}}</p>
+    <div style="margin-top: 10px; font-size: 11.5px; color: #5E6D67">Source: {{rulesSrc}}</div>
+  </div>
+  </sc-if>
+
+  <div style="flex-grow: 1"></div>
+  <a href="Planner.dc.html" style="flex-shrink: 0; height: 52px; border-radius: 16px; background: #264E43; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #FFFFFF">{{planLabel}}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    let c = 'ae';
+    try { c = (window.location.hash || '').replace('#', '') || 'ae'; } catch (e) {}
+    if (!Component.DATA[c]) c = 'ae';
+    this.state = { c, tracking: Component.DATA[c].tracking };
+  }
+  renderVals() {
+    const c = this.state.c, d = Component.DATA[c];
+    const trips = d.trips.map(([mon, day, dates, where, kind, days], i) => ({
+      mon, day, dates, where, kind, days,
+      tagBg: kind === 'Work' ? '#264E43' : kind === 'Here now' ? '#F5F1E8' : '#E4F1FE', tagFg: kind === 'Work' ? '#FFFFFF' : '#264E43',
+      bd: i < d.trips.length - 1 ? '1px solid #EEF1EF' : 'none',
+    }));
+    const docs = d.docs.map(([type, name, meta], i) => ({ type, name, meta, bg: ['#264E43', '#E4F1FE', '#F5F1E8'][i % 3], fg: i % 3 === 0 ? '#FFFFFF' : '#264E43', bd: i < d.docs.length - 1 ? '1px solid #EEF1EF' : 'none' }));
+    const f = d.forecast;
+    return {
+      code: c, name: d.name, the: d.the, theP: d.theP, short: d.short, sub: d.sub,
+      days: d.work + d.pleasure, work: d.work, pleasure: d.pleasure, workSub: d.workSub, pleasureSub: d.pleasureSub,
+      tracking: this.state.tracking, notTracking: !this.state.tracking, track: () => this.setState({ tracking: true }),
+      fTitle: f.title, fFill: f.fill, fDash: Math.max(0, f.dash - f.fill), fMark: f.mark != null, fMarkAt: f.mark, fMarkLabel: f.markLabel, fL: f.l, fR: f.r, fNote: f.note,
+      tripsTitle: c === 'ae' ? 'Your time here' : 'Your trips', trips,
+      docs, docCount: d.docs.length + (d.docs.length === 1 ? ' file' : ' files'), docIntro: d.docIntro,
+      stampCode: d.stampCode || c, stampSub: d.stampSub,
+      rulesLink: c === 'uk', rulesPlain: c !== 'uk', rulesLabel: 'HOW ' + d.the.toUpperCase() + ' COUNTS', rules1: d.rules[0], rules2: d.rules[1], rulesSrc: d.rulesSrc,
+      planLabel: c === 'ae' ? 'Plan a trip' : 'Plan another ' + d.short + ' trip',
+      back: (e) => { try { if (window.history.length > 1) { e.preventDefault(); window.history.back(); } } catch (err) {} },
+    };
+  }
+}
+Component.DATA = {
+  eu: { name: 'Schengen area', the: 'the Schengen area', theP: "the Schengen area's", short: 'Schengen', sub: 'Spain, France, Italy and 26 more · 90 days in any 180', tracking: true, stampCode: 'es',
+    work: 20, pleasure: 35, workSub: 'days · 1 trip', pleasureSub: 'days · 3 trips',
+    forecast: { title: '55 of 90 days in the last 180. Your Madrid trip takes you to 62.', fill: 61, dash: 69, mark: null, markLabel: '', l: 'Apr', r: 'Oct', note: 'Counted across every Schengen country.' },
+    trips: [['AUG', '1', '1 – 20 Aug', 'Madrid, Barcelona · Spain', 'Work', 20], ['JUN', '12', '12 – 26 Jun', 'Madrid · Spain', 'Pleasure', 15], ['MAY', '10', '10 – 20 May', 'Paris, Lyon · France', 'Pleasure', 11], ['APR', '14', '14 – 22 Apr', 'Rome, Florence · Italy', 'Pleasure', 9]],
+    docIntro: 'Proof of your Schengen days, if you ever need it: boarding passes, hotel bookings, letters from work.',
+    docs: [['PDF', 'Iberia boarding pass · MAD', '1 Aug trip · Work · 150 KB'], ['JPG', 'Hotel booking · Madrid', '12 – 26 Jun trip · Pleasure · 880 KB']],
+    stampSub: 'Last entry 1 Aug, Madrid-Barajas',
+    rules: ['As a visitor you can stay up to 90 days in any 180, counted across all 29 Schengen countries together.', 'The window rolls: each day, the oldest day drops out and today counts. Your advisor confirms what applies to you.'], rulesSrc: 'Schengen 90/180 rule' },
+  ae: { name: 'United Arab Emirates', the: 'the UAE', theP: "the UAE's", short: 'UAE', sub: 'Home base', tracking: true,
+    work: 121, pleasure: 37, workSub: 'days', pleasureSub: 'days',
+    forecast: { title: "At this pace, you'll reach 183 on 20 Oct.", fill: 76, dash: 80, mark: 80, markLabel: '183', l: 'Jan', r: 'Dec', note: 'If you stay in the UAE from today.' },
+    trips: [['SEP', '14', '14 Sep – today', 'Dubai · back from London', 'Here now', 22], ['AUG', '21', '21 Aug – 6 Sep', 'Dubai · back from Madrid', 'Work', 17], ['JUL', '20', '20 – 31 Jul', 'Dubai, Abu Dhabi · back from London', 'Pleasure', 12]],
+    docIntro: 'Proof you live here, for your Tax Residency Certificate: Emirates ID, tenancy contract, utility bills.',
+    docs: [['PDF', 'Emirates ID · front and back', 'Valid to Mar 2028 · 410 KB'], ['PDF', 'Tenancy contract (Ejari)', 'Dubai Marina · 1.1 MB'], ['JPG', 'DEWA bill · August', 'Utility bill · 640 KB']],
+    stampSub: 'Back home 14 Sep, Dubai (DXB)',
+    rules: ['Spend 183 days or more in the UAE within 12 months and you can qualify as a tax resident. Any part of a day here counts as a full day.', 'A 90-day route also exists for residents with a permanent home or job here. Your advisor confirms which applies to you.'], rulesSrc: 'UAE Cabinet Decision 85/2022' },
+  uk: { name: 'United Kingdom', the: 'the UK', theP: "the UK's", short: 'UK', sub: 'Visited · 3 trips in 2026', tracking: true,
+    work: 22, pleasure: 19, workSub: 'days · 2 trips', pleasureSub: 'days · 1 trip',
+    forecast: { title: "At this pace, about 30 nights this UK tax year. Well under your 90.", fill: 50, dash: 50, mark: null, markLabel: '', l: '6 Apr', r: '5 Apr', note: 'Based on your trips so far.' },
+    trips: [['SEP', '7', '7 – 13 Sep', 'London · arrived via Heathrow', 'Work', 7], ['JUL', '1', '1 – 19 Jul', 'London, Edinburgh · via Gatwick', 'Pleasure', 19], ['MAR', '21', '21 Mar – 4 Apr', 'London · arrived via Heathrow', 'Work', 15]],
+    docIntro: 'Proof of your UK days, if you ever need it: boarding passes, hotel bookings, visas, letters from work.',
+    docs: [['PDF', 'BA boarding pass · LHR', '7 Sep trip · Work · 182 KB'], ['JPG', 'Hotel booking · Edinburgh', '1 – 19 Jul trip · Pleasure · 1.2 MB'], ['PDF', 'Letter from employer', '21 Mar trip · Work · 96 KB']],
+    stampSub: 'First entry 21 Mar, Heathrow',
+    rules: ["For tax, the UK counts the nights you're here at midnight across its own year (6 April to 5 April). Your limit depends on your ties: with 2 ties (family and a home here), you're safe up to 90 days.", "Fewer ties means more days: 1 tie lets you stay 120, none lets you stay 182. Your advisor confirms what applies to you."], rulesSrc: 'Official GOV.UK links' },
+  es: { name: 'Spain', the: 'Spain', theP: "Spain's", short: 'Spain', sub: 'Visited · 2 trips in 2026 · Madrid on 10 Oct', tracking: false,
+    work: 20, pleasure: 15, workSub: 'days · 1 trip', pleasureSub: 'days · 1 trip',
+    forecast: { title: 'Schengen: 62 of 90 days after Madrid. Fine, but keep an eye on it.', fill: 76, dash: 80, mark: null, markLabel: '', l: 'Jan', r: 'Dec', note: 'Includes your Madrid trip on 10 Oct.' },
+    trips: [['AUG', '1', '1 – 20 Aug', 'Madrid, Barcelona · via Madrid-Barajas', 'Work', 20], ['JUN', '12', '12 – 26 Jun', 'Madrid · via Madrid-Barajas', 'Pleasure', 15]],
+    docIntro: 'Proof of your Spain days, if you ever need it: boarding passes, hotel bookings, letters from work.',
+    docs: [['PDF', 'Iberia boarding pass · MAD', '1 Aug trip · Work · 150 KB'], ['JPG', 'Hotel booking · Madrid', '12 – 26 Jun trip · Pleasure · 880 KB']],
+    stampSub: 'First entry 12 Jun, Madrid-Barajas',
+    rules: ['Spain is in the Schengen area. As a visitor you can stay up to 90 days in any 180, counted across every Schengen country.', 'For tax, Spain uses the calendar year, and 183 days or more usually makes you resident. Your advisor confirms what applies to you.'], rulesSrc: 'Schengen 90/180 rule' },
+  us: { name: 'United States', the: 'the US', theP: "the US's", short: 'US', sub: 'Visited · 1 trip in 2026', tracking: true,
+    work: 14, pleasure: 0, workSub: 'days · 1 trip', pleasureSub: 'days',
+    forecast: { title: 'At this pace, 14 days in the US this year. Far from any limit.', fill: 76, dash: 76, mark: null, markLabel: '', l: 'Jan', r: 'Dec', note: 'Based on your trips so far.' },
+    trips: [['JAN', '21', '21 Jan – 3 Feb', 'New York · via JFK', 'Work', 14]],
+    docIntro: 'Proof of your US days, if you ever need it: boarding passes, ESTA, hotel bookings.',
+    docs: [['PDF', 'ESTA approval', 'Valid to Jan 2028 · 120 KB']],
+    stampSub: 'First entry 21 Jan, New York (JFK)',
+    rules: ['On ESTA you can visit for up to 90 days at a time, for business meetings or tourism.', 'For tax, the US uses a substantial presence test: 31 days this year and 183 days across three years, weighted. Your advisor confirms what applies to you.'], rulesSrc: 'ESTA and IRS rules' },
+  fr: { name: 'France', the: 'France', theP: "France's", short: 'France', sub: 'Visited · 1 trip in 2026', tracking: false,
+    work: 0, pleasure: 11, workSub: 'days', pleasureSub: 'days · 1 trip',
+    forecast: { title: 'Schengen: 47 of 90 days used in the last 180.', fill: 76, dash: 76, mark: null, markLabel: '', l: 'Jan', r: 'Dec', note: 'Counted across every Schengen country.' },
+    trips: [['MAY', '10', '10 – 20 May', 'Paris, Lyon · via CDG', 'Pleasure', 11]],
+    docIntro: 'Proof of your France days, if you ever need it: boarding passes, hotel bookings.',
+    docs: [],
+    stampSub: 'First entry 10 May, Paris (CDG)',
+    rules: ['France is in the Schengen area. As a visitor you can stay up to 90 days in any 180, counted across every Schengen country.', 'For tax, France looks at where your main home is and where you spend most of your time. Your advisor confirms what applies to you.'], rulesSrc: 'Schengen 90/180 rule' },
+  it: { name: 'Italy', the: 'Italy', theP: "Italy's", short: 'Italy', sub: 'Visited · 1 trip in 2026', tracking: false,
+    work: 0, pleasure: 9, workSub: 'days', pleasureSub: 'days · 1 trip',
+    forecast: { title: 'Schengen: 47 of 90 days used in the last 180.', fill: 76, dash: 76, mark: null, markLabel: '', l: 'Jan', r: 'Dec', note: 'Counted across every Schengen country.' },
+    trips: [['APR', '14', '14 – 22 Apr', 'Rome, Florence · via FCO', 'Pleasure', 9]],
+    docIntro: 'Proof of your Italy days, if you ever need it: boarding passes, hotel bookings.',
+    docs: [],
+    stampSub: 'First entry 14 Apr, Rome (FCO)',
+    rules: ['Italy is in the Schengen area. As a visitor you can stay up to 90 days in any 180, counted across every Schengen country.', 'For tax, Italy usually counts you as resident if you live or are registered there for more than half the year. Your advisor confirms what applies to you.'], rulesSrc: 'Schengen 90/180 rule' },
+  th: { name: 'Thailand', the: 'Thailand', theP: "Thailand's", short: 'Thailand', sub: 'Visited · 1 trip in 2026', tracking: true,
+    work: 0, pleasure: 12, workSub: 'days', pleasureSub: 'days · 1 trip',
+    forecast: { title: '12 of 180 days this year. Far from tax residency.', fill: 76, dash: 76, mark: null, markLabel: '', l: 'Jan', r: 'Dec', note: 'Thailand counts the calendar year.' },
+    trips: [['FEB', '3', '3 – 14 Feb', 'Bangkok, Koh Samui · via BKK', 'Pleasure', 12]],
+    docIntro: 'Proof of your Thailand days, if you ever need it: boarding passes, entry stamps, hotel bookings.',
+    docs: [['PDF', 'Thai Airways boarding pass · BKK', '3 Feb trip · Pleasure · 140 KB']],
+    stampSub: 'First entry 3 Feb, Bangkok (BKK)',
+    rules: ['Most passports get 30 days visa-free per visit (cut from 60 on 15 Sep 2026). We count each visit from the day you land.', 'For tax, 180 days or more in a calendar year makes you resident. Your advisor confirms what applies to you.'], rulesSrc: 'Thai Immigration and Revenue Department' },
+};
+</script>
+</body>
+</html>

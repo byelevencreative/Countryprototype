@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ties</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.05s}.stg>*:nth-child(3){animation-delay:.1s}.stg>*:nth-child(4){animation-delay:.15s}.stg>*:nth-child(5){animation-delay:.2s}.stg>*:nth-child(6){animation-delay:.25s}.stg>*:nth-child(7){animation-delay:.3s}.stg>*:nth-child(n+8){animation-delay:.35s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+button,input{font-family:inherit}
+@keyframes pop{from{transform:scale(.6)}to{transform:scale(1)}}
+</style>
+</helmet>
+<div class="stg" style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; padding: 52px 24px 36px; display: flex; flex-direction: column">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="HomeBase.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -12px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <div style="flex-grow: 1; display: flex; gap: 6px"><span style="flex-grow: 1; height: 4px; border-radius: 2px; background: #264E43"></span><span style="flex-grow: 1; height: 4px; border-radius: 2px; background: #264E43"></span><span style="flex-grow: 1; height: 4px; border-radius: 2px; background: #264E43"></span><span style="flex-grow: 1; height: 4px; border-radius: 2px; background: #9DB5AC"></span><span style="flex-grow: 1; height: 4px; border-radius: 2px; background: #E3DED2"></span><span style="flex-grow: 1; height: 4px; border-radius: 2px; background: #E3DED2"></span></div>
+  </div>
+  <h1 style="margin: 24px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; color: #264E43">{{title}}</h1>
+  <p style="margin: 10px 0 0; font-size: 15px; line-height: 1.45; color: #4F6159">{{intro}}</p>
+
+  <div style="margin-top: 16px; padding: 12px 16px 2px; border-radius: 18px; border: 1px solid #E3DED2">
+    <div style="display: flex; align-items: center; gap: 10px; padding-bottom: 10px">
+      <dc-import name="Flag" code="{{code}}" w="26" h="18" hint-size="26px,18px"></dc-import>
+      <span style="flex-grow: 1; font-size: 16px; font-weight: 700; color: #264E43">{{country}}</span>
+      <span style="padding: 3px 9px; border-radius: 999px; background: #F5F1E8; font-size: 11.5px; font-weight: 600; color: #5E6D67">Your passport</span>
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{ties}}" as="t" hint-placeholder-count="3">
+        <button onClick="{{t.toggle}}" aria-pressed="{{t.on}}" style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border: none; border-top: 1px solid #EFEBE2; background: none; text-align: left; cursor: pointer">
+          <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; color: #1C2B26">{{t.label}}</span><span style="font-size: 12.5px; line-height: 1.4; color: #5E6D67">{{t.sub}}</span></span>
+          <span style="width: 26px; height: 26px; flex-shrink: 0; box-sizing: border-box; border-radius: 8px; border: 1.5px solid {{t.bd}}; background: {{t.bg}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{t.op}}"><path d="M3 7.2l2.6 2.6L11 4.5"></path></svg></span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="margin-top: 12px; display: flex; gap: 12px; padding: 14px 16px; border-radius: 16px; background: {{resBg}}">
+    <span style="flex-shrink: 0; min-width: 34px; height: 34px; padding: 0 6px; box-sizing: border-box; border-radius: 17px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 16px; color: #264E43">{{big}}</span>
+    <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14.5px; font-weight: 600; line-height: 1.35; color: #264E43">{{res1}}</span><span style="font-size: 12.5px; line-height: 1.45; color: #3D5048">{{res2}}</span></span>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <div style="margin-bottom: 12px; font-size: 12px; line-height: 1.45; color: #7A8983; text-align: center">You can change these any time in You · Countries and rules.</div>
+  <a href="Notifications.dc.html" style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 16px; background: #264E43; color: #FFFFFF; font-weight: 600; font-size: 16px">{{cta}}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"passport":{"editor":"enum","options":["uk","es"],"default":"uk"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); const es = p && p.passport === 'es'; this.state = { on: es ? { home: true } : { family: true, home: true, recent: true } }; }
+  renderVals() {
+    const es = this.props.passport === 'es', on = this.state.on;
+    const Q = es ? [
+      ['family', 'Family in Spain', 'A partner or children under 18 who live there'],
+      ['home', 'A home in Spain', 'Somewhere you own or rent, even if it sits empty'],
+      ['money', 'Income or a business in Spain', 'Your main job, company or investments are there']
+    ] : [
+      ['family', 'Family in the UK', 'A partner or children under 18 who live there'],
+      ['home', 'A home in the UK', 'Somewhere you can stay 91+ days in a row'],
+      ['work', 'Work in the UK', '40+ days with 3+ hours of work a tax year'],
+      ['recent', 'Lived in the UK in the last 3 years', 'Not a tie, but it changes the limit']
+    ];
+    const ties = Q.map(([k, label, sub]) => { const v = !!on[k]; return { label, sub, on: v ? 'true' : 'false', bd: v ? '#264E43' : '#B9C9C2', bg: v ? '#264E43' : '#FFFFFF', op: v ? 1 : 0,
+      toggle: () => this.setState({ on: { ...on, [k]: !v } }) }; });
+    let n, big, res1, res2, resBg;
+    if (es) {
+      n = ['family', 'home', 'money'].filter((k) => on[k]).length;
+      big = n; resBg = n ? '#F5F1E8' : '#E4F1FE';
+      res1 = n ? (n === 1 ? '1 tie in Spain. Worth a check.' : n + ' ties in Spain. Worth a check.') : 'No ties. We will just count your Spain days.';
+      res2 = n ? 'Spain can see you as resident even under 183 days if your life is centred there. We will flag it in your report, and a tax advisor can confirm.' : 'Spain usually looks at 183 days, or where your family and income are.';
+    } else {
+      n = ['family', 'home', 'work'].filter((k) => on[k]).length;
+      const L = on.recent ? [182, 120, 90, 45, 15] : [182, 182, 120, 90, 45];
+      const lim = L[Math.min(n, 4)], next = n > 0 ? L[n - 1] : null;
+      big = lim; resBg = '#E4F1FE';
+      res1 = n === 0 ? 'No UK ties. You are safe up to 182 days.' : (n === 1 ? '1 UK tie' : n + ' UK ties') + '. You are safe up to ' + lim + ' days.';
+      res2 = (n > 0 && next !== lim ? 'Lose one and it goes up to ' + next + '. ' : '') + 'UK tax year: 6 Apr to 5 Apr.';
+    }
+    return {
+      code: es ? 'es' : 'uk', country: es ? 'Spain' : 'United Kingdom',
+      title: es ? 'Do you still have ties to Spain?' : 'Do you still have ties to the UK?',
+      intro: es ? 'You hold a Spanish passport and live in the UAE. Spain looks at your family, home and income, not just your days.' : 'You hold a UK passport and live in the UAE. Each UK tie lowers your day limit there.',
+      ties, big, res1, res2, resBg, cta: n === 0 ? 'No ties, continue' : 'Continue'
+    };
+  }
+}
+</script>
+</body>
+</html>

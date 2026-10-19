@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Alerts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43;text-decoration:none}a:hover{color:#1C2B26}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes ring{from{stroke-dashoffset:81.7}}
+.stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.06s}.stg>*:nth-child(3){animation-delay:.12s}.stg>*:nth-child(4){animation-delay:.18s}.stg>*:nth-child(5){animation-delay:.24s}.stg>*:nth-child(6){animation-delay:.3s}.stg>*:nth-child(n+7){animation-delay:.36s}
+button{font-family:inherit}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes toast{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden">
+<div class="stg" style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; padding: 52px 24px 30px; display: flex; flex-direction: column">
+  <div style="display: flex; align-items: center; gap: 8px">
+    <a href="Today.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -12px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; color: #264E43">Alerts</h1>
+  </div>
+
+  <div style="margin-top: 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5E6D67">TODAY</div>
+  <a href="Country.dc.html#ae" style="margin-top: 8px; display: flex; gap: 14px; padding: 14px; border-radius: 16px; background: #E4F1FE; color: #1C2B26">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="flex-shrink: 0" aria-hidden="true"><circle cx="17" cy="17" r="13" stroke="#FFFFFF" stroke-width="4"></circle><circle cx="17" cy="17" r="13" stroke="#264E43" stroke-width="4" stroke-linecap="round" stroke-dasharray="81.7" stroke-dashoffset="11.2" transform="rotate(-90 17 17)" style="animation: ring 1.2s cubic-bezier(.2,.8,.2,1) .4s both"></circle></svg>
+    <span style="flex-grow: 1"><span style="display: block; font-size: 14.5px; font-weight: 600; color: #264E43">Day 158 counted in the UAE</span><span style="display: block; margin-top: 2px; font-size: 13px; color: #3D5048">25 to go. On track for 2 Nov, after Madrid.</span></span>
+    <span style="font-size: 11.5px; color: #3D5048">00:01</span>
+  </a>
+
+  <div style="margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #5E6D67">EARLIER</div>
+  <div class="stg" style="display: flex; flex-direction: column">
+    <a href="Country.dc.html#uk" style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #EFEBE2; color: #1C2B26">
+      <span style="width: 34px; display: flex; justify-content: center; padding-top: 3px"><dc-import name="Flag" code="ae" w="24" h="17" hint-size="24px,17px"></dc-import></span>
+      <span style="flex-grow: 1"><span style="display: block; font-size: 14.5px; font-weight: 600">Welcome back to the UAE</span><span style="display: block; margin-top: 2px; font-size: 13px; line-height: 1.45; color: #4F6159">Your UK trip added 7 days. UK: 24 of 90 this tax year.</span></span>
+      <span style="font-size: 11.5px; color: #5E6D67">13 Sep</span>
+    </a>
+    <a href="EditDay.dc.html" style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #EFEBE2; color: #1C2B26">
+      <span style="width: 34px; display: flex; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17v.01"></path></svg></span>
+      <span style="flex-grow: 1"><span style="display: block; font-size: 14.5px; font-weight: 600">Where were you on 10 Sep?</span><span style="display: block; margin-top: 2px; font-size: 13px; line-height: 1.45; color: #4F6159">We had no location that day. <span style="color: #2F7353; font-weight: 600">Answered: United Kingdom</span></span></span>
+      <span style="font-size: 11.5px; color: #5E6D67">11 Sep</span>
+    </a>
+    <a href="Country.dc.html#uk" style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #EFEBE2; color: #1C2B26">
+      <span style="width: 34px; display: flex; justify-content: center; padding-top: 3px"><dc-import name="Flag" code="uk" w="24" h="17" hint-size="24px,17px"></dc-import></span>
+      <span style="flex-grow: 1"><span style="display: block; font-size: 14.5px; font-weight: 600">Landed in the United Kingdom?</span><span style="display: block; margin-top: 2px; font-size: 13px; line-height: 1.45; color: #4F6159">UK counts midnights. Confirmed by you.</span></span>
+      <span style="font-size: 11.5px; color: #5E6D67">7 Sep</span>
+    </a>
+    <a href="TripsAll.dc.html#cal-aug" style="display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #EFEBE2; color: #1C2B26">
+      <span style="width: 34px; display: flex; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2.5"></rect><path d="M4 9.5h16M8.5 3v4M15.5 3v4"></path></svg></span>
+      <span style="flex-grow: 1"><span style="display: block; font-size: 14.5px; font-weight: 600">Your August</span><span style="display: block; margin-top: 2px; font-size: 13px; line-height: 1.45; color: #4F6159">20 days in Spain, 11 in the UAE. Schengen: 55 of 90.</span></span>
+      <span style="font-size: 11.5px; color: #5E6D67">1 Sep</span>
+    </a>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <button onClick="{{openHeads}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: none; border-radius: 16px; background: #F5F1E8; color: #1C2B26; cursor: pointer; text-align: left">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"></path><path d="M10 20.5a2 2 0 0 0 4 0"></path></svg>
+    <span style="flex-grow: 1; font-size: 13px; line-height: 1.4; white-space: nowrap">First heads-up: <b>{{days}} days before any limit</b></span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+  </button>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{false}}">
+  <div style="position: fixed; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; z-index: 60">
+    <button onClick="{{closeHeads}}" aria-label="Close" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(28,43,38,.38); cursor: pointer; animation: fade .2s ease-out both"></button>
+    <div role="dialog" aria-label="First heads-up" style="position: relative; padding: 10px 20px 28px; border-radius: 26px 26px 0 0; background: #FFFFFF; animation: up .28s cubic-bezier(.2,.8,.2,1) both">
+      <div style="width: 40px; height: 5px; margin: 0 auto; border-radius: 3px; background: #D8D3C7"></div>
+      <h2 style="margin: 16px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; color: #264E43">First heads-up</h2>
+      <p style="margin: 4px 0 0; font-size: 13.5px; line-height: 1.45; color: #5E6D67">How early should we warn you that you're getting close to a limit?</p>
+      <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px">
+        <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+          <button onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: 16px; border: 1.5px solid {{o.bd}}; background: {{o.bg}}; cursor: pointer; text-align: left">
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; color: #1C2B26">{{o.label}} <span style="font-size: 11.5px; font-weight: 600; color: #2F7353">{{o.tag}}</span></span><span style="font-size: 12.5px; color: #5E6D67">{{o.sub}}</span></span>
+            <span style="width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%; border: 2px solid {{o.ring}}; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{o.dot}}"></span></span>
+          </button>
+        </sc-for>
+      </div>
+      <p style="margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; color: #5E6D67">We'll remind you again 7 days before, and on the day.</p>
+      <button onClick="{{save}}" style="margin-top: 16px; width: 100%; height: 50px; border: none; border-radius: 16px; background: #264E43; color: #FFFFFF; font-size: 15px; font-weight: 600; cursor: pointer">Save</button>
+      <a href="You.dc.html" style="margin-top: 12px; display: block; text-align: center; font-size: 13px; font-weight: 600">All alert settings ›</a>
+    </div>
+  </div>
+</sc-if>
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+  <div role="status" style="position: fixed; z-index: 70; left: 50%; bottom: 100px; transform: translateX(-50%); padding: 11px 16px; border-radius: 14px; background: #1C2B26; color: #FFFFFF; font-size: 13.5px; font-weight: 500; white-space: nowrap; animation: toast .25s ease-out both; z-index: 6">{{toast}}</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"sheet":{"editor":"enum","options":["closed","open"],"default":"closed"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { days: 30, pick: 30, open: !!(p && p.sheet === 'open'), toast: null }; }
+  renderVals() {
+    const S = this.state;
+    const O = [[7, '', 'Schengen: at 83 of 90'], [14, '', 'Schengen: at 76 of 90'], [30, 'Recommended', 'Schengen: at 60 of 90'], [60, '', 'Schengen: at 30 of 90']];
+    return {
+      days: S.days, open: S.open, toast: S.toast,
+      openHeads: () => this.setState({ open: true, pick: S.days }),
+      closeHeads: () => this.setState({ open: false }),
+      save: () => { this.setState({ open: false, days: S.pick, toast: 'Heads-up set to ' + S.pick + ' days before' }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: null }), 2200); },
+      opts: O.map(([d, tag, sub]) => { const on = S.pick === d; return { label: d + ' days before', tag, sub, bd: on ? '#264E43' : '#E3DED2', bg: on ? '#F5F1E8' : '#FFFFFF', ring: on ? '#264E43' : '#B9C9C2', dot: on ? '#264E43' : 'transparent', pick: () => this.setState({ pick: d }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

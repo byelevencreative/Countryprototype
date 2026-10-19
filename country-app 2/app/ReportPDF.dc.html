@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Residence day report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',sans-serif;color:#1C2B26}
+a{color:#264E43}a:hover{color:#1C2B26}
+</style>
+</helmet>
+<div style="width: 794px; height: 1123px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; overflow: hidden">
+  <div style="background: #264E43; padding: 44px 56px 36px; color: #FFFFFF; display: flex; flex-direction: column">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 40px; letter-spacing: -0.03em; color: #CFE8FF; line-height: 1"><span style="font-weight: 800">count</span><span style="font-weight: 300; color: #6D9488">ry</span></div>
+      <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; line-height: 1.8; color: #9CB9AF">RESIDENCE DAY REPORT<br>REF [REPORT ID]<br>GENERATED 25 SEP 2026</div>
+    </div>
+    <div style="margin-top: 38px; display: flex; justify-content: space-between; align-items: flex-end">
+      <div>
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.02em; line-height: 1.05">Anna [Surname]</div>
+        <div style="margin-top: 8px; font-size: 13px; color: #CFE8FF">UK passport · Home base: United Arab Emirates</div>
+      </div>
+      <div style="text-align: right">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #9CB9AF">PERIOD</div>
+        <div style="margin-top: 4px; font-size: 15px; font-weight: 600">1 Jan – 25 Sep 2026</div>
+        <div style="font-size: 12px; color: #CFE8FF">268 days</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 30px 56px 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+    <div style="padding-top: 12px; border-top: 3px solid #264E43"><div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5E6D67">UAE</div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.05; color: #264E43">158</div><div style="font-size: 11.5px; color: #4F6159">days in 2026</div></div>
+    <div style="padding-top: 12px; border-top: 3px solid #6D9488"><div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5E6D67">SCHENGEN</div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.05; color: #264E43">55</div><div style="font-size: 11.5px; color: #4F6159">in the last 180 days</div></div>
+    <div style="padding-top: 12px; border-top: 3px solid #7FAFD9"><div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5E6D67">UNITED KINGDOM</div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.05; color: #264E43">41</div><div style="font-size: 11.5px; color: #4F6159">25 in tax year 2026/27</div></div>
+    <div style="padding-top: 12px; border-top: 3px solid #B9A77E"><div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #5E6D67">UNITED STATES</div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.05; color: #264E43">14</div><div style="font-size: 11.5px; color: #4F6159">days in 2026</div></div>
+  </div>
+
+  <div style="padding: 30px 56px 0">
+    <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; color: #264E43">Where every day was spent</span><span style="font-size: 11px; color: #5E6D67">One line per day · 2026</span></div>
+    <div style="margin-top: 12px; display: flex; height: 64px; gap: 0.5px">
+      <sc-for list="{{year}}" as="d" hint-placeholder-count="365"><span style="flex-grow: 1; flex-basis: 0; background: {{d}}"></span></sc-for>
+    </div>
+    <div style="margin-top: 6px; display: flex; font-size: 10px; color: #5E6D67">
+      <sc-for list="{{months}}" as="m" hint-placeholder-count="12"><span style="flex-grow: {{m.d}}; flex-basis: 0; border-left: 1px solid #E3DED2; padding-left: 3px">{{m.n}}</span></sc-for>
+    </div>
+    <div style="margin-top: 10px; display: flex; gap: 18px; font-size: 11px; color: #3D5048">
+      <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; background: #264E43"></span>UAE</span>
+      <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; background: #6D9488"></span>Schengen (Spain, France, Italy)</span>
+      <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; background: #7FAFD9"></span>United Kingdom</span>
+      <span style="display: flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; background: #B9A77E"></span>United States</span>
+    </div>
+  </div>
+
+  <div style="padding: 28px 56px 0">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; color: #264E43">Position by rule</div>
+    <table style="margin-top: 10px; width: 100%; border-collapse: collapse; font-size: 12px">
+      <thead><tr style="text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.12em; color: #5E6D67"><th style="padding: 8px 0; border-bottom: 1px solid #264E43; font-weight: 500">COUNTRY</th><th style="padding: 8px 0; border-bottom: 1px solid #264E43; font-weight: 500">RULE</th><th style="padding: 8px 0; border-bottom: 1px solid #264E43; font-weight: 500">HOW DAYS COUNT</th><th style="padding: 8px 0; border-bottom: 1px solid #264E43; font-weight: 500; text-align: right">DAYS</th><th style="padding: 8px 0; border-bottom: 1px solid #264E43; font-weight: 500; text-align: right">THRESHOLD</th></tr></thead>
+      <tbody>
+        <tr><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; font-weight: 600">UAE</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2">183-day rule, 12 months</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; color: #4F6159">Any part of a day</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right; font-weight: 600">158</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right">183 to reach</td></tr>
+        <tr><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; font-weight: 600">Schengen</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2">90 days in any 180</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; color: #4F6159">Any part of a day</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right; font-weight: 600">55</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right">90 limit</td></tr>
+        <tr><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; font-weight: 600">United Kingdom</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2">Statutory Residence Test</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; color: #4F6159">Midnights, tax year from 6 Apr</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right; font-weight: 600">25</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right">90 with 2 ties</td></tr>
+        <tr><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; font-weight: 600">United States</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2">Substantial presence</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; color: #4F6159">Any part of a day, 3-year weighted</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right; font-weight: 600">14</td><td style="padding: 9px 0; border-bottom: 1px solid #EFEBE2; text-align: right">183 limit</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="padding: 26px 56px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px">
+    <div>
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; color: #264E43">Trips abroad</div>
+      <div style="margin-top: 8px; display: flex; flex-direction: column; font-size: 11.5px">
+        <sc-for list="{{trips}}" as="t" hint-placeholder-count="8"><div style="display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px solid #EFEBE2"><span style="width: 104px; color: #4F6159">{{t.d}}</span><span style="flex-grow: 1; font-weight: 500">{{t.c}}</span><span style="width: 24px; text-align: right; font-weight: 600">{{t.n}}</span></div></sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 17px; color: #264E43">How days were recorded</div>
+      <div style="margin-top: 12px; display: flex; height: 12px; gap: 2px"><span style="flex-grow: 214; background: #264E43"></span><span style="flex-grow: 51; background: #6D9488"></span><span style="flex-grow: 3; background: #CFE8FF"></span></div>
+      <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #3D5048">
+        <span><b style="color: #1C2B26">214</b> from phone location</span>
+        <span><b style="color: #1C2B26">51</b> added by the user, before tracking began</span>
+        <span><b style="color: #1C2B26">3</b> corrected by the user, with notes</span>
+      </div>
+      <div style="margin-top: 14px; padding: 12px; border-radius: 10px; background: #F5F1E8; font-size: 11px; line-height: 1.5; color: #3D5048">Page 2 lists every day with its source, any proof attached, and each correction.</div>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <div style="margin: 0 56px; padding: 16px 0 28px; border-top: 1px solid #E3DED2; display: flex; justify-content: space-between; gap: 24px; font-size: 10px; line-height: 1.55; color: #5E6D67">
+    <span style="max-width: 520px">country counts days from phone location and the user's own entries. This report is a record of presence, not tax or legal advice. Confirm your residency position with a qualified advisor.</span>
+    <span style="white-space: nowrap">Page 1 of 2</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const col = { ae: '#264E43', eu: '#6D9488', uk: '#7FAFD9', us: '#B9A77E', f: '#EDEAE1' };
+    const seg = [['ae',20],['us',14],['ae',45],['uk',24],['eu',8],['ae',18],['eu',12],['ae',21],['eu',15],['uk',10],['ae',25],['eu',20],['ae',17],['uk',7],['ae',12],['f',97]];
+    const year = [];
+    seg.forEach(([c, n]) => { for (let i = 0; i < n; i++) year.push(col[c]); });
+    const mn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const md = [31,28,31,30,31,30,31,31,30,31,30,31];
+    const months = mn.map((n, i) => ({ n, d: md[i] }));
+    const trips = [
+      { d: '21 Jan – 3 Feb', c: 'United States', n: 14 },
+      { d: '21 Mar – 13 Apr', c: 'United Kingdom', n: 24 },
+      { d: '14 – 21 Apr', c: 'Italy', n: 8 },
+      { d: '10 – 21 May', c: 'France', n: 12 },
+      { d: '12 – 26 Jun', c: 'Spain', n: 15 },
+      { d: '27 Jun – 6 Jul', c: 'United Kingdom', n: 10 },
+      { d: '1 – 20 Aug', c: 'Spain', n: 20 },
+      { d: '7 – 13 Sep', c: 'United Kingdom', n: 7 }
+    ];
+    return { year, months, trips };
+  }
+}
+</script>
+</body>
+</html>
