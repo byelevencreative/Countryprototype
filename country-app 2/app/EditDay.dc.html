@@ -33,7 +33,7 @@ button{font-family:inherit}
           <span style="width: 22px; height: 22px; border-radius: 11px; border: 1.5px solid {{o.bd}}; background: {{o.dot}}; box-shadow: inset 0 0 0 4px #FFFFFF"></span>
         </button>
       </sc-for>
-      <button style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px; border-radius: 14px; border: 1px dashed #6D9488; background: #FFFFFF; font-size: 14px; font-weight: 600; color: #264E43; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Somewhere else</button>
+      <button onClick="{{showMore}}" style="display: {{moreDisp}}; align-items: center; gap: 12px; height: 50px; padding: 0 16px; border-radius: 14px; border: 1px dashed #6D9488; background: #FFFFFF; font-size: 14px; font-weight: 600; color: #264E43; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Somewhere else</button>
     </div>
 
     <div style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; min-height: 48px; border-top: 1px solid #EFEBE2; border-bottom: 1px solid #EFEBE2">
@@ -58,12 +58,13 @@ class Component extends DCLogic {
       { code: 'uk', name: 'United Kingdom', sub: 'You were there on 9 and 11 Sep' },
       { code: 'ae', name: 'United Arab Emirates', sub: 'Your home base' }
     ];
+    if (this.state.more) list.push({ code: 'es', name: 'Spain', sub: 'Last there in June' }, { code: 'fr', name: 'France', sub: 'Last there in May' }, { code: 'it', name: 'Italy', sub: 'Last there in April' });
     const opts = list.map((o) => {
       const on = this.state.pick === o.code;
       return { ...o, on: on ? 'true' : 'false', bd: on ? '#264E43' : '#E3DED2', bg: on ? '#EEF6FF' : '#FFFFFF', dot: on ? '#264E43' : '#FFFFFF', pick: () => this.setState({ pick: o.code }) };
     });
     const t = this.state.travel;
-    return { opts, travel: t ? 'true' : 'false', swBg: t ? '#264E43' : '#D9D4C8', swX: t ? '23px' : '3px', toggleTravel: () => this.setState({ travel: !t }) };
+    return { opts, travel: t ? 'true' : 'false', swBg: t ? '#264E43' : '#D9D4C8', swX: t ? '23px' : '3px', moreDisp: this.state.more ? 'none' : 'flex', showMore: () => this.setState({ more: true }), toggleTravel: () => this.setState({ travel: !t }) };
   }
 }
 </script>

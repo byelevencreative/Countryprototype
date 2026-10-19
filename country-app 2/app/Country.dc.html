@@ -19,6 +19,7 @@ button{font-family:inherit}
 .stg>*{animation:rise .45s ease-out both}.stg>*:nth-child(2){animation-delay:.05s}.stg>*:nth-child(3){animation-delay:.1s}.stg>*:nth-child(4){animation-delay:.16s}.stg>*:nth-child(5){animation-delay:.22s}.stg>*:nth-child(n+6){animation-delay:.28s}
 .bar{transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) .5s both}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,8px)}15%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0}}
 </style>
 </helmet>
 <div class="stg" style="width: 390px; height: 1900px; box-sizing: border-box; background: #FFFFFF; padding: 52px 20px 40px; display: flex; flex-direction: column; gap: 14px">
@@ -121,11 +122,11 @@ button{font-family:inherit}
             <span style="font-size: 14px; font-weight: 500; color: #1C2B26; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.name}}</span>
             <span style="font-size: 12px; color: #5E6D67">{{d.meta}}</span>
           </span>
-          <button aria-label="More options" style="width: 32px; height: 32px; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#7A8983"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+          <button onClick="{{tMore}}" aria-label="More options" style="width: 32px; height: 32px; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="#7A8983"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
         </div>
       </sc-for>
     </div>
-    <button style="margin-top: 12px; width: 100%; height: 72px; border-radius: 14px; border: 1.5px dashed #9CB9AF; background: #F7FAF9; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px">
+    <button onClick="{{tUp}}" style="margin-top: 12px; width: 100%; height: 72px; border-radius: 14px; border: 1.5px dashed #9CB9AF; background: #F7FAF9; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px">
       <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #264E43"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#264E43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>Upload a document</span>
       <span style="font-size: 11.5px; color: #5E6D67">Photo, PDF or screenshot · we'll match it to a trip</span>
     </button>
@@ -156,10 +157,14 @@ button{font-family:inherit}
 
   <div style="flex-grow: 1"></div>
   <a href="Planner.dc.html" style="flex-shrink: 0; height: 52px; border-radius: 16px; background: #264E43; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #FFFFFF">{{planLabel}}</a>
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}"><div role="status" style="position: fixed; left: 50%; bottom: 104px; z-index: 70; padding: 10px 16px; border-radius: 12px; background: #1C2B26; color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; animation: toast 2s ease both">{{toast}}</div></sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1900}}'>
 class Component extends DCLogic {
+  renderVals() { const v = this._rv() || {}; const T = {'tMore': 'Document shared', 'tUp': 'Document added'}; v.toast = (this.state || {}).toast || ''; for (const k in T) v[k] = () => this.flash(T[k]); return v; }
+  flash(t) { this.setState({ toast: '' }); setTimeout(() => this.setState({ toast: t }), 10); setTimeout(() => this.setState({ toast: '' }), 2100); }
+
   constructor(p) {
     super(p);
     let c = 'ae';
@@ -167,7 +172,7 @@ class Component extends DCLogic {
     if (!Component.DATA[c]) c = 'ae';
     this.state = { c, tracking: Component.DATA[c].tracking };
   }
-  renderVals() {
+  _rv() {
     const c = this.state.c, d = Component.DATA[c];
     const trips = d.trips.map(([mon, day, dates, where, kind, days], i) => ({
       mon, day, dates, where, kind, days,

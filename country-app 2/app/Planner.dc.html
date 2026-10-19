@@ -120,7 +120,7 @@ button{font-family:inherit}
 
   <div style="flex-grow: 1"></div>
   <a href="Trips.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 16px; background: #264E43; color: #FFFFFF; font-weight: 600; font-size: 16px">Save trip</a>
-  <button style="margin-top: 6px; height: 46px; border: none; background: none; font-size: 15px; font-weight: 500; color: #264E43; cursor: pointer">Try other dates</button>
+  <button onClick="{{tryDates}}" style="margin-top: 6px; height: 46px; border: none; background: none; font-size: 15px; font-weight: 500; color: #264E43; cursor: pointer">Try other dates</button>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1240}}'>
@@ -167,7 +167,7 @@ class Component extends DCLogic {
       whereOpen: S.open, whereAria: S.open ? 'true' : 'false', chevRot: S.open ? '180deg' : '0deg',
       whereBd: S.open ? '1.5px solid #264E43' : '1px solid #E3DED2', whereBg: S.open ? '#EEF6FF' : '#FFFFFF',
       whenBd: S.open ? '1px solid #E3DED2' : '1.5px solid #264E43', whenBg: S.open ? '#FFFFFF' : '#EEF6FF',
-      toggleWhere: () => this.setState({ open: !S.open }), showCal: () => this.setState({ open: false }),
+      toggleWhere: () => this.setState({ open: !S.open }), showCal: () => this.setState({ open: false }), tryDates: () => { this.setState({ open: false }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} },
       search: (e) => this.setState({ q: e.target.value }),
       monthLabel: MN[m] + ' 2026', prevOp: m > 9 ? '1' : '0.3', nextOp: m < 11 ? '1' : '0.3',
       prevM: () => { if (m > 9) this.setState({ m: m - 1 }); }, nextM: () => { if (m < 11) this.setState({ m: m + 1 }); },
